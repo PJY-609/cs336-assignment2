@@ -1,0 +1,2150 @@
+{
+  "validation": {
+    "main_cases": 240,
+    "tile_sensitivity_cases": 72,
+    "successful_cases": 308,
+    "resource_limit_cases": 4,
+    "case_json_files": 312,
+    "tuning_json_files": 80,
+    "plot_files": 10,
+    "table_values_match_case_json": true,
+    "archives_verified": true
+  },
+  "files": [
+    {
+      "path": "BENCHMARKING.md",
+      "bytes": 8748,
+      "sha256": "5c0e05889c22fcf53db243cda67138d2ebaca8191799a5592d04689ff59806fb"
+    },
+    {
+      "path": "benchmark.env",
+      "bytes": 169,
+      "sha256": "7c239b617259d0fcf1aed1b26eaa17ed39adb434705f1839c9fb2e4014b46756"
+    },
+    {
+      "path": "benchmark_results/.gitignore",
+      "bytes": 173,
+      "sha256": "b2f9e899adcbe1d273329ec7044fb1435bb39ea8fad31e5a549b115331b8b60b"
+    },
+    {
+      "path": "benchmark_results/archives/README.md",
+      "bytes": 1219,
+      "sha256": "0c7dbfc3af61d1bf5b244641ca2273ad29f2a24334aafbee67129f5300b58caf"
+    },
+    {
+      "path": "benchmark_results/archives/completed_run_diagnostics.tar.gz",
+      "bytes": 133030,
+      "sha256": "5b2ea30f7da6292613a4ec2c8899b12fdfb18158b099a470c5cbf6614cc84ca4"
+    },
+    {
+      "path": "benchmark_results/archives/superseded_latency_run.tar.gz",
+      "bytes": 121137,
+      "sha256": "1a71c61816b28fc8518e8d1b1b47353a2e7cbcf1d906bddb49c9927293d5c1d9"
+    },
+    {
+      "path": "benchmark_results/archives/validation_runs.tar.gz",
+      "bytes": 856682,
+      "sha256": "f91672a1e7df089bca31ad6905fd73d070d3ece50c91eabc6636bdb90988673b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/README.md",
+      "bytes": 1374,
+      "sha256": "ece281d4353f04b4b196d5ea7f2951f9f37b01bdb953d153379575aa5c7b4847"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/benchmark.env",
+      "bytes": 169,
+      "sha256": "7c239b617259d0fcf1aed1b26eaa17ed39adb434705f1839c9fb2e4014b46756"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/benchmark_attention.py",
+      "bytes": 20225,
+      "sha256": "be55301f43adfcfdcefe1c5386956f024adc95bb324f828c0d16848bc8f68b6e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d128_bfloat16.json",
+      "bytes": 2658,
+      "sha256": "a329fcf2c6e5c199b9be96caf779403215092fbe64ce7c4b56d10bcd0a6bed08"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d128_float32.json",
+      "bytes": 2691,
+      "sha256": "70f4a68d4aaf1b12c06573c590e0b85a3ee6cbf51361d3950590212ad65369e8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d16_bfloat16.json",
+      "bytes": 2648,
+      "sha256": "0eee3f059c88c9c6057f30539321b26a01cd4a1c89d9c2d53c620a4a88ac4932"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d16_float32.json",
+      "bytes": 2688,
+      "sha256": "fb43e55a7eedca1da66869f6bfda92ec8eec56e9bfe57c653c5c1aa908492a5c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d32_bfloat16.json",
+      "bytes": 2650,
+      "sha256": "faeb1bf4f73451b4d7b4ec437a5da584a05b309022a7b098d29ddb54144dd66b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d32_float32.json",
+      "bytes": 2682,
+      "sha256": "f70fcabbb395d6c265f30cc7196041f8ac51a4864eebe6a67574a222a34e1035"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d64_bfloat16.json",
+      "bytes": 2619,
+      "sha256": "813aa8b6b78d74e1f847adb8f91941efbcbd39f11aa63dea50b5c69fa23798e5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n1024_d64_float32.json",
+      "bytes": 2685,
+      "sha256": "0f6d1958b6b59237f69e81660de38aa98556c52f773d8688c4db02772d14c98d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d128_bfloat16.json",
+      "bytes": 1797,
+      "sha256": "e39c2088dc2bbe15c7781bf34b1881d1fa248d63785bb4e670755c314e18c0bd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d128_float32.json",
+      "bytes": 1808,
+      "sha256": "836516fadf179330e3d304625f017f957f280711fec634895ff4545218d7728c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d16_bfloat16.json",
+      "bytes": 1792,
+      "sha256": "c5a896f75264f3e67c993745483194a123ffaff88b2fc1883d54d30a909acad6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d16_float32.json",
+      "bytes": 1802,
+      "sha256": "93bdfcf755e11fc02f83fa3f3a213ca9d9149cee3efdc61f7d2b4b0079b36f96"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d32_bfloat16.json",
+      "bytes": 1795,
+      "sha256": "696907c52697876335c346ca0ac180656f646cde24734c29875becec930e5946"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d32_float32.json",
+      "bytes": 1812,
+      "sha256": "16e0b8738da928bccb18f4acf28c4a881c7fd3f0050215e20c09df8b56586090"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d64_bfloat16.json",
+      "bytes": 1781,
+      "sha256": "229e19ca12673e379c115207c9a4c6d48930d72c0948da70d8eab9fe6ccb9253"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n128_d64_float32.json",
+      "bytes": 1807,
+      "sha256": "a21f0badda84299da714a83ae3f732a7c3016adbd5628c24491190cc2f4c4461"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d128_bfloat16.json",
+      "bytes": 2650,
+      "sha256": "744e10f76f6ed7955499f958137481dc225a82b78600e8df5a5b4992a9717e49"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d128_float32.json",
+      "bytes": 2678,
+      "sha256": "df17204abb69a3b237cb0b904253ed56842038c54a7a65ddd935caca9284412f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d16_bfloat16.json",
+      "bytes": 2638,
+      "sha256": "fb23a33b84a5ca2150598892432fa641ef2a7416774c4a3e6c1e811666efed87"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d16_float32.json",
+      "bytes": 2675,
+      "sha256": "e55e689318bba6a3e3f731c6d1f967b9280e3dca0dc0477aaaf1ebd1e62c7423"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d32_bfloat16.json",
+      "bytes": 2646,
+      "sha256": "6fcf03885cb7c1680dd51042098e5096517baacc1612c0644d3f75bc2faf22be"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d32_float32.json",
+      "bytes": 2683,
+      "sha256": "98f47eb6d0c2e5057e252db2cf1411a955028b52d146973c8c163d268f30a7ad"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d64_bfloat16.json",
+      "bytes": 2612,
+      "sha256": "228778893ae0d59896a39111916e1c5cfa8adde37ff1d3faef7f6c3354ebffe2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n16384_d64_float32.json",
+      "bytes": 2678,
+      "sha256": "ccab478c852a208d634af3898fea6ebc4a4ebe9b8256d22fe13a21b9128bf6cd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d128_bfloat16.json",
+      "bytes": 2653,
+      "sha256": "df089bc03a1633d7348a76e74f1691dce2de3f0e690bc0385599e08133780a58"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d128_float32.json",
+      "bytes": 2678,
+      "sha256": "9af23377b2b012b5f8036363b3431fdd57a0281d5957a6a802123f925545a5a6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d16_bfloat16.json",
+      "bytes": 2643,
+      "sha256": "8bece948a6b85151ae021db6c07032339d36af2f0164ecf0e630d46746226708"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d16_float32.json",
+      "bytes": 2676,
+      "sha256": "3bbee13a444f319ece1b0826bd951533d4172512249fd1d5ecee0a95752ef4d5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d32_bfloat16.json",
+      "bytes": 2651,
+      "sha256": "7d2596caeb24f6691ea6bb8bc6d05898297d9d18a4eb5de319a9ed8667db33ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d32_float32.json",
+      "bytes": 2689,
+      "sha256": "ee1babddb288e44f4c4dd275cd6071641ee792e4062cc4f924805d842b1bf50d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d64_bfloat16.json",
+      "bytes": 2618,
+      "sha256": "92a7452bdae78e9e03dbcce798435ad288a1f46649e700bd8f1443eff67b5391"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n2048_d64_float32.json",
+      "bytes": 2679,
+      "sha256": "f6a972dc9637b633ad3796e3d30ec2252e9a509bface09774ed334f37e4c2181"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d128_bfloat16.json",
+      "bytes": 1798,
+      "sha256": "6cab02d7327c6dab3b41ca4654ba262d18218f3d739b8d0ce2738d870e88d5c1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d128_float32.json",
+      "bytes": 1808,
+      "sha256": "807fd7cfa442a04335a91219eea91d4fa6f234b9929782fb7feaeb390e296966"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d16_bfloat16.json",
+      "bytes": 1790,
+      "sha256": "4b8560924af880908aa0608831e5db1a05ae64314666ec3eb6001cf41823077c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d16_float32.json",
+      "bytes": 1807,
+      "sha256": "116ddd3b0f33809a7a834a8981e6565920ca78be8a0a7b15afd2a0779c7312e1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d32_bfloat16.json",
+      "bytes": 1795,
+      "sha256": "e60b23647002f17b89c4f045e0fc1ff18458df67e6593ba9ab35ab5121560ccd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d32_float32.json",
+      "bytes": 1805,
+      "sha256": "1f1c857ffee36b320b97ff33cccd013a4e971d4169379ed5871e282609921fb2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d64_bfloat16.json",
+      "bytes": 1780,
+      "sha256": "9b5896ce5676714ca6c9e111d11c3032a1a3a3ae79b669c2d81a2311a06412e8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n256_d64_float32.json",
+      "bytes": 1809,
+      "sha256": "101284e511e92063de9fc345fd99a6c93e3a7935260a8b64b1da6e39dae7cf17"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d128_bfloat16.json",
+      "bytes": 2653,
+      "sha256": "068711cd387b37a89b76c9852290f84cc2d799cf28217a5f291abb79eeafd04d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d128_float32.json",
+      "bytes": 2679,
+      "sha256": "b6242df56363df4b7e0fdc2dc09c581f693d77f6896219d930e4449b0011dd7c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d16_bfloat16.json",
+      "bytes": 2643,
+      "sha256": "e9268d1a646f538b91e6b8d855600dcb008d8b0ee26e93899992889a207c6894"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d16_float32.json",
+      "bytes": 2674,
+      "sha256": "123cb10bd13e68ee1db736e2c9500b934b586f3f31e049761cec8c97b153b59d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d32_bfloat16.json",
+      "bytes": 2648,
+      "sha256": "542e2e9e3c223e7533de9cb988462a524d0a591d0523bcf6f25e47532ba275da"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d32_float32.json",
+      "bytes": 2687,
+      "sha256": "c9d0882eb65e0100fbd303198562abcab2adfc3b49e3dd888f207a2bf88df990"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d64_bfloat16.json",
+      "bytes": 2616,
+      "sha256": "f72233456b307678988d4a4c2467ad58c0bf53f90df1b138a7715a183345c764"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n32768_d64_float32.json",
+      "bytes": 2681,
+      "sha256": "cfb59564fb4625679754c6538725283f99145d65d4e46fd91d4e07b2d88bc9bc"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d128_bfloat16.json",
+      "bytes": 2651,
+      "sha256": "b43932cc4e8f89a477dd5ee95a4a800581f230315242c3e284ab2adccb8ba5fc"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d128_float32.json",
+      "bytes": 2675,
+      "sha256": "f942b4b285feb6bfdf0444f41911ab12cbfe458ab5b4ae3fbe96b5f6ef859211"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d16_bfloat16.json",
+      "bytes": 2642,
+      "sha256": "e89ea150cce89830f64ef963ceaaafe2b66d4af406dcd3eed6b7d7a40b20a323"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d16_float32.json",
+      "bytes": 2672,
+      "sha256": "20fee72772f1e90bd813aabebbe377c2fe936e3f53b0c808bc963e6c6005ba1d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d32_bfloat16.json",
+      "bytes": 2649,
+      "sha256": "3d66ca8d5c21fd401d7b4d440e7ceb4b2ceaf510097d990312d2ebec3530f69a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d32_float32.json",
+      "bytes": 2687,
+      "sha256": "14e4ec75d86512499b9f442b77df5e9e2d5c3b0b46c06b70456aeeb20d083ddb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d64_bfloat16.json",
+      "bytes": 2614,
+      "sha256": "99f2fa0b357f7400df3b5b87a3c5a5306e47e0cad06d35d1548442f93a0ba725"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n4096_d64_float32.json",
+      "bytes": 2677,
+      "sha256": "13d1ccb828b4095e82e211e961ca89559d5f9940f708fbe23f165d41183e648e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d128_bfloat16.json",
+      "bytes": 2217,
+      "sha256": "b07603c3c4dda3fd55e547099d6419de2a11e70038b7ba19ffd2356fa64d215c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d128_float32.json",
+      "bytes": 2246,
+      "sha256": "f2124d5fa93b8ae5562c28c93ddb633ae668e1fa8e914afd086d507d7fb11d41"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d16_bfloat16.json",
+      "bytes": 2215,
+      "sha256": "c8889e9d9ed54adc321afa705ae501ddf4cb8ca11c3e0424647b101a2ac4a8a8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d16_float32.json",
+      "bytes": 2241,
+      "sha256": "9c84534c79610be5cc7157ffd276bc1020cf391402a8b80f291061173499a972"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d32_bfloat16.json",
+      "bytes": 2223,
+      "sha256": "572a755c174a3a3ef98fba5da28482cd75638393b27ae0802953140e9ccb7f3b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d32_float32.json",
+      "bytes": 2239,
+      "sha256": "3fe79473e29918f5d596369d87d23509828d98be902285b9758af8d57890dce3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d64_bfloat16.json",
+      "bytes": 2196,
+      "sha256": "71eaaa576a1b0eb6758706e96eb45b1567c6126fd93faaed0fcda807bca3fb1e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n512_d64_float32.json",
+      "bytes": 2241,
+      "sha256": "b8e397ab6e57183ff0ef28abe3f740b50fb33a2c1266b2c1e4ba00065b69b156"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d128_bfloat16.json",
+      "bytes": 2655,
+      "sha256": "7f429479ed2da320b3efce373360278e6ab763df85a59f8da37627ef68a180bb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d128_float32.json",
+      "bytes": 2674,
+      "sha256": "4fcfce71c0b18299b3c412e53646b078ab4fd6779b8f5f90ce2a426b355464b2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d16_bfloat16.json",
+      "bytes": 2643,
+      "sha256": "a48e45d5b0bdd45bf4800ec1b608dff0dc52315c75dd16d0496b8a0d3976acc3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d16_float32.json",
+      "bytes": 2675,
+      "sha256": "df2045c36d6ad33db7b78674e105a4ef34fc46400ac7baaf7ecce76694d4de1d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d32_bfloat16.json",
+      "bytes": 2650,
+      "sha256": "8336f15ce463668ba222cdd5e8f8a85d713f1a6d5dc957374d7ec3d9f914665c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d32_float32.json",
+      "bytes": 2688,
+      "sha256": "b1944b097c486354e7003f8f14b99241c8211858977f167643c64f20d255a92f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d64_bfloat16.json",
+      "bytes": 2614,
+      "sha256": "325dd970132c79f2d0906aeafe758d86bed8a39ec30761e015a0fb7c3cab720d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n65536_d64_float32.json",
+      "bytes": 2680,
+      "sha256": "f383e605f89337301d55bd17a7feaba1502ae9904ae6c18e71c824fb84d21e05"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d128_bfloat16.json",
+      "bytes": 2648,
+      "sha256": "99ea10843c66a1b255e8cac3009f369908bfa4348e03fc5b492d5d7af190b185"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d128_float32.json",
+      "bytes": 2673,
+      "sha256": "ee27d131635ff78affcc33b2be774d8112ce59c5d45bc08aabd9262a0f01a918"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d16_bfloat16.json",
+      "bytes": 2643,
+      "sha256": "4cdd6a9ed834172f37fafcc0c2e357b3c8bb9753b596ac842594e7199a7ce6f4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d16_float32.json",
+      "bytes": 2674,
+      "sha256": "7b3e5bd7c2ba7b8a736698107d9c629a3d306f20afc49dafac60cb178ff3b503"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d32_bfloat16.json",
+      "bytes": 2647,
+      "sha256": "a69ced3812f435a5380a8bbc065f138c813b572314252c0b8854ec5da6645a3e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d32_float32.json",
+      "bytes": 2688,
+      "sha256": "0d16c4ebff0dbda35a70993062950dd29e8809db1273dfe4bd2f486400aaa851"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d64_bfloat16.json",
+      "bytes": 2612,
+      "sha256": "05fde475faa614bc97b62c3c4c63c633241777f4a22677ffb83b6ac1429fc1b3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_pytorch_n8192_d64_float32.json",
+      "bytes": 2678,
+      "sha256": "5ec5e12d545c52ff95ef1c8674c7a3d58d6484a38727498a7015d4ab0cffa5d8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d128_bfloat16.json",
+      "bytes": 3071,
+      "sha256": "aa8152ec54703c0ec9a6499c2311fd20a16b7b0218e22250f8dcb4285afcaa66"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d128_float32.json",
+      "bytes": 3089,
+      "sha256": "846a7afe7a541d648377a3b89c987ed570069e21d2db1ab583f905e07174f496"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d16_bfloat16.json",
+      "bytes": 3074,
+      "sha256": "9d905ed9695688a24e311ca9daf404d150843cccfefc0a07f22624f84247873f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d16_float32.json",
+      "bytes": 3087,
+      "sha256": "1b4e8e004208284bbf4a5144e7ba6e5f0c9737858797e650479011795b66c5d7"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d32_bfloat16.json",
+      "bytes": 3065,
+      "sha256": "611f38ff786dda739ecce49d25083b4ab83360295e93413b0774b0825bddd11c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d32_float32.json",
+      "bytes": 3105,
+      "sha256": "53efa5ea5c18d6742edae89ccf31563467cd262195acf838a415a320e7e85afd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d64_bfloat16.json",
+      "bytes": 3063,
+      "sha256": "06d2bc0004a1086c7b99a28d21aa56bae8fc8a1f71e338bfa39af5e8169ad36d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n1024_d64_float32.json",
+      "bytes": 3091,
+      "sha256": "833d7280ae758835f4203040779d8029741c277d0a289bd19af7b03d9c87c0b8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d128_bfloat16.json",
+      "bytes": 3066,
+      "sha256": "b8e2faaafb9901ea7f8807986fd6d04d823b4f579c53aabd17948e1d9136c198"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d128_float32.json",
+      "bytes": 3098,
+      "sha256": "72bd03407f29e3565ca37999b0ac0ab8b298995fd313bf7d9d0316ab473d9308"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d16_bfloat16.json",
+      "bytes": 3070,
+      "sha256": "a359db9e0d10cdc49de0eac5504e7fd122492d37f3516332797bb5c839dfaec5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d16_float32.json",
+      "bytes": 3087,
+      "sha256": "b8f261fa090981644fa67e003134a53a6a9bb9b6d992c1a5ede714f7c7955a9c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d32_bfloat16.json",
+      "bytes": 3065,
+      "sha256": "4628f0360e781ba93d7d1433d3e81e22ddd7b8221407da52494443ea4351c86b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d32_float32.json",
+      "bytes": 3102,
+      "sha256": "5a41769a387a12f5c366acba680303c2d6622f15f7c72406e60c9f20bf275d57"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d64_bfloat16.json",
+      "bytes": 3060,
+      "sha256": "a5458cb6d6546391878acad8fdc4d931ae84567e8c6f2af3c56698b3faf7d56d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n128_d64_float32.json",
+      "bytes": 3091,
+      "sha256": "08011a7aaaf4e7db8b46793b2e4e790ff8581c51dd86533000da7c1c2d36f9f1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d128_bfloat16.json",
+      "bytes": 3064,
+      "sha256": "a09bc2182f2e0d6bf5cd1df5e4b0e58fda217a0b8b04ef82c7f6a6d9761316a1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d128_float32.json",
+      "bytes": 3087,
+      "sha256": "6abea52ac0cc8c5171715dd5e474d3379774e78fd999bcd3a7c8132004f2737e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d16_bfloat16.json",
+      "bytes": 3072,
+      "sha256": "4b23db07fde1565b0d44a4c680758c1f168a21b757efa2d581bdfc2fd7bfb1c0"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d16_float32.json",
+      "bytes": 3081,
+      "sha256": "68c40f86047bdc6c2c6a959bba44df155a2e6cca18bc31b1f590a88aeb104d37"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d32_bfloat16.json",
+      "bytes": 3065,
+      "sha256": "598fec040f0ec6eb156abc61f49c3b1dd76ae3a7f944e821bc0e976605f95ca8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d32_float32.json",
+      "bytes": 3091,
+      "sha256": "98a5975f3d29be1d8de442f57b7c65bbbd79904fd5434848759f93b9da5a8969"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d64_bfloat16.json",
+      "bytes": 3056,
+      "sha256": "ab3a8b08850150c1aa4b61ac1f0aea417da2e40bcb3b564945b4cde6913fa124"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n16384_d64_float32.json",
+      "bytes": 3082,
+      "sha256": "78140b71840a622db201e90c7a5bfa3f705a2afd611f658f34e68220e06cf84c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d128_bfloat16.json",
+      "bytes": 3071,
+      "sha256": "0e78f80d99ddd0389dd28da2a6e360671646e132921a52d2f9e4116692bf66ca"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d128_float32.json",
+      "bytes": 3093,
+      "sha256": "d26d17a178106e2b9078dc53d451c951161d49c227c16889bbcb815162611e62"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d16_bfloat16.json",
+      "bytes": 3075,
+      "sha256": "9357a6a12fb87d801b7e9dbc3d4263ca13e0a38676e70e86d6a630a475056146"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d16_float32.json",
+      "bytes": 3089,
+      "sha256": "e5237ce3f08936be4ab7dec638aa8c97b51d8e8fde5f712a73fbbb2cbcbc2a2b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d32_bfloat16.json",
+      "bytes": 3071,
+      "sha256": "feb6bea052ff637933f0d3a800d021a94529937804b9d5ba4ecf031067201331"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d32_float32.json",
+      "bytes": 3100,
+      "sha256": "1e007aede7fedf475afd68f3763956b5661683f37bb8031eb608f347ef24410f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d64_bfloat16.json",
+      "bytes": 3058,
+      "sha256": "5ab8e033bc6db1b3cdf55f70e4c3b3c99694bb868eed900d7562dfc13f73bd78"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n2048_d64_float32.json",
+      "bytes": 3087,
+      "sha256": "7dc81f835e67e9a55ce843d08221bb0bb000e1d2476920fad4b041fccdaf83c6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d128_bfloat16.json",
+      "bytes": 3069,
+      "sha256": "273bd2898c18a3a1a114f5db2b6f573e78a39a7a3fdb7c78f1c6a2c0e109d1df"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d128_float32.json",
+      "bytes": 3093,
+      "sha256": "7675ae9260b5f5e4380d45abcbf1d7dc519b4eb2b955c5f21aa04bc5f313e786"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d16_bfloat16.json",
+      "bytes": 3067,
+      "sha256": "2171a5c70b8655a861993c45cb8dfbd90e1f9fafbe4972c20343c63dae0a7030"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d16_float32.json",
+      "bytes": 3087,
+      "sha256": "ae9fadf3b64040e6f6f43e9852a09dee11649b1b6dfccad85b08ea6f9be6f812"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d32_bfloat16.json",
+      "bytes": 3064,
+      "sha256": "5d5da29a82b14a7c743170b987129f1919cd9c02f9ba19d1c07c85dfc94c249e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d32_float32.json",
+      "bytes": 3101,
+      "sha256": "f0ca895026f055b97631070bc3909a90907f5a7596a3416e68826dcf0f5cc952"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d64_bfloat16.json",
+      "bytes": 3060,
+      "sha256": "4436813f10a833a1b9a53bf177dc6c9c713292c4b7e2dc09470a9b6211ebda55"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n256_d64_float32.json",
+      "bytes": 3086,
+      "sha256": "a3dd8e2d0bc113330df21ce240c3c6d6f35bdf954258d033e4522f22c44d18bc"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d128_bfloat16.json",
+      "bytes": 3065,
+      "sha256": "1633118bd6711deb0a012108c6aeb93bb0953de7a1b40a7cd1d7a29770a19e5c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d128_float32.json",
+      "bytes": 3091,
+      "sha256": "ac77717eedb877b31024601dd522b816b9869ec58cf1e2d9f8d7f897dca6234a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d16_bfloat16.json",
+      "bytes": 3072,
+      "sha256": "9e11fc999b62f79266411f91ab667ca4155d433900641fba49b89eb88957e60d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d16_float32.json",
+      "bytes": 3077,
+      "sha256": "93bc09c0a42a79150364c974c420cd0aa8d568611670862a85738c98bdbffb19"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d32_bfloat16.json",
+      "bytes": 3064,
+      "sha256": "e92802fa2780b0826b84fc6763f9924a27434a80c7f0340fdb03f892688cdbfa"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d32_float32.json",
+      "bytes": 3094,
+      "sha256": "db1bb6c0ad6881b150efefb7a5d9e981bb638f245c8fba3631af5ed7d2632565"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d64_bfloat16.json",
+      "bytes": 3051,
+      "sha256": "4f3277744d40aa442807584f1104f03fae5960db69b91b9793d0933c04f3b5a2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n32768_d64_float32.json",
+      "bytes": 3085,
+      "sha256": "2c7398ec4399138cb26e987fd2077a8a739838e979c2f408b4b78c78bca6a776"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d128_bfloat16.json",
+      "bytes": 3069,
+      "sha256": "8076408853d5ab446ec0196a10efb5006335474d2905466b758ae81ba927087b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d128_float32.json",
+      "bytes": 3088,
+      "sha256": "537fbfc15fe754b21995f8b2862fc95dc731aed3db9104594898f008e3b8aa23"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d16_bfloat16.json",
+      "bytes": 3075,
+      "sha256": "abf7f58548b7b8a3ee357d1efa1ce9cbe552182af3003e7395ece21ecfed79d1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d16_float32.json",
+      "bytes": 3088,
+      "sha256": "34773dc88a24e4476515b63d98c630f5d402f227f14e61fb37f55ad65d376ea5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d32_bfloat16.json",
+      "bytes": 3070,
+      "sha256": "9c905803069a026c0c18b50066bd954a4b9c8d56dc4589e36434bd3cbb0ce75f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d32_float32.json",
+      "bytes": 3099,
+      "sha256": "8e388d2d306e4ddf3ccffa8ffff9be1a2d7b7cd1464181c5fd6e6a60d970bda9"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d64_bfloat16.json",
+      "bytes": 3059,
+      "sha256": "f7850d86d89ada7c2d9d30c094968a76307a28d73d912eb2c4b85b180808441f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n4096_d64_float32.json",
+      "bytes": 3082,
+      "sha256": "83731468b9e3619ec1fbe9fe6d4d55bc52e336b77ebe1fb8e5bab167a7044729"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d128_bfloat16.json",
+      "bytes": 3068,
+      "sha256": "67fa6d35b33d7fb2c3764e94fe1472f8731605f6f6c1f5418b76c98e9ee31c0b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d128_float32.json",
+      "bytes": 3094,
+      "sha256": "d26af3dfee878275437522dd3d46f3bebb48c74549f9d39a671d90e59a2560d2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d16_bfloat16.json",
+      "bytes": 3071,
+      "sha256": "a95f563d25a3e630996c48745113896799ffb42f0ecd6cb01ca57897e0b25f29"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d16_float32.json",
+      "bytes": 3087,
+      "sha256": "70db9483874f82108754a61b0232e7ddbdf8cf7b54e7b1857416da16d3518a6a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d32_bfloat16.json",
+      "bytes": 3066,
+      "sha256": "cddf511512c71095bf21820d302097b8f15514ce15b69f8521f22022a962d591"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d32_float32.json",
+      "bytes": 3104,
+      "sha256": "d1fd4c47c3fdefdd6262a722a79b5fc4e92716647c8cdf9f542e5132cd9ae73c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d64_bfloat16.json",
+      "bytes": 3063,
+      "sha256": "0d21786a65d27d943c04be01810504bd9ec764ebe6799ed7209b150d3e74d7f9"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n512_d64_float32.json",
+      "bytes": 3092,
+      "sha256": "3d282bd6aa938cb2406d8c1440ea1e3504f5f96280efca2a8b72e73357992b24"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d128_bfloat16.json",
+      "bytes": 3065,
+      "sha256": "5fddd1302809aa1aeef6c8cdeb104cbff69fe8b051db39794b3bcd3db8c03fed"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d128_float32.json",
+      "bytes": 3090,
+      "sha256": "875d1c341161a27653ebcb4908631a7f8a13995738e8ed595d78e4ce07cca6bb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d16_bfloat16.json",
+      "bytes": 3066,
+      "sha256": "8855e4a2d758de2647ea1f74031149c54d4fc271947e3b2dbd0cdb90f4831c25"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d16_float32.json",
+      "bytes": 3081,
+      "sha256": "88d40d0d81ab1bae0ca55795b517742d650e50a3f20a0b501d5d15c233cf4abd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d32_bfloat16.json",
+      "bytes": 3062,
+      "sha256": "7243d6995dbddc8591fb337d0eaa2ce03ad340ef3caf4cd2d633f17f95657b79"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d32_float32.json",
+      "bytes": 3100,
+      "sha256": "ea506f3176437dba8ccab292bda41a77e5207bcc5318bd67ce3ead0a7e807566"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d64_bfloat16.json",
+      "bytes": 3055,
+      "sha256": "d6174a63034a4695d0433341b2e6183174442c4beb2480eb871c4388169b26ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n65536_d64_float32.json",
+      "bytes": 3082,
+      "sha256": "bc7c44bc39be0fdf5708185d2f402f9e275cfbf9fbf7df49614e261265a581d5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d128_bfloat16.json",
+      "bytes": 3068,
+      "sha256": "1efc8d502e4b2ec60e56511a0eaa915e404e0838c3cbcc36d5239717ea57b0ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d128_float32.json",
+      "bytes": 3090,
+      "sha256": "769118e9416f343b7fa6e48e13bbb1febd644ec2907ddaede8abf97d0e8fd732"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d16_bfloat16.json",
+      "bytes": 3076,
+      "sha256": "247c2b96724f6ea7b950a2c66aafb6ce382e75e75bc2c894ff03c7f340b2676e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d16_float32.json",
+      "bytes": 3084,
+      "sha256": "9e7dd359856376d7a730fbf83cae2a916ff4cdb3616fe883d5072c80ea32abf3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d32_bfloat16.json",
+      "bytes": 3066,
+      "sha256": "639f189effb3612b43d4fd2908f2d68e48e311c137e58dccf2dc8b97b95e7746"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d32_float32.json",
+      "bytes": 3094,
+      "sha256": "3aba8ccc03a68a6a6d51a5a429fde5623afe948da63684111d5a14fad622f48a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d64_bfloat16.json",
+      "bytes": 3058,
+      "sha256": "56b31f45cf1f40d54cd67e83844647a053935805d8842a28e27c043f9a317772"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/flash_triton_n8192_d64_float32.json",
+      "bytes": 3083,
+      "sha256": "ec5263eb4811b98dd60213b6f0354707045a4516ab340abe01e8f5526113b636"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d128_bfloat16.json",
+      "bytes": 1219,
+      "sha256": "96aea28ceebfb50304d26c5ee1c28c12e39ae82cc8b5e06e34ad81048ad43cda"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d128_float32.json",
+      "bytes": 1220,
+      "sha256": "292f94f2239cbdbf57b41ea39e343369ef23fa64a9122bd8c4953cbed57d6a49"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d16_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "fe8166cd8261494425489c0b46f79487d61e14c907f21f56dc5cbf2a562e901c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d16_float32.json",
+      "bytes": 1220,
+      "sha256": "d012d38924c49d3de5d80bd0145e1ea2f32c0af99e6c751f74598b3f31c361e4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d32_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "c553f107895d1cfaf6cfe7e8e122072b8cb07ed62ab070b1eb9d35c0f24ce5d6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d32_float32.json",
+      "bytes": 1224,
+      "sha256": "03fc5eeb7e902aa220c0539a745812cec563c05e1b496d2c59affee8edb6db66"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d64_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "2fcf51b8ae287e94cc25eaf4c241aca9d049f3a10841dcd640e5f09dc3858107"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n1024_d64_float32.json",
+      "bytes": 1222,
+      "sha256": "ed8f6e32d3bc4401513d2e6326255b0a1d974fa57d8b9177e4b1a39ef6897d2b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d128_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "f5bf7419539a729c7dbfec5e4e7cc9e0b3f037e491cc0a53cc598717bdcc0a5d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d128_float32.json",
+      "bytes": 1221,
+      "sha256": "f964e9608bf1f399b70f6c83830dcd9d46717ab53b13c4993033656cccfc0354"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d16_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "19a952610f9941fc124256592ac04213aefaa040e8df9fe23bc718451ac6408e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d16_float32.json",
+      "bytes": 1222,
+      "sha256": "589c17282b3cfe2644ac9b4c88c1ec1140b6f921a36c7b3b0efd9d01c9369661"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d32_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "5dd37bcff619630c5749d08c7def20f298a4421184c4deec9466325910321f57"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d32_float32.json",
+      "bytes": 1222,
+      "sha256": "127a754ad33ad04b2af4880ee29599c6c82e834abfa9c80f6ab1ddef1707c55d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d64_bfloat16.json",
+      "bytes": 1214,
+      "sha256": "55718dd7aaaaa28f85b819e89b4189a7822fd8a749b9b6c807dbe261ef90ea7a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n128_d64_float32.json",
+      "bytes": 1218,
+      "sha256": "700ff2a9307a2d691762db1b95fed6fd726f9111a7390898326b071090722696"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d128_bfloat16.json",
+      "bytes": 1217,
+      "sha256": "443ec42df4d9155d5e2d53aecb0aa3b77c1b3a0ff01af3a5e588433a50017af1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d128_float32.json",
+      "bytes": 1222,
+      "sha256": "e8686ac5dd6991a3a64fc93807d3db9be4e2bb16a0644b1719eba2faa92da4ca"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d16_bfloat16.json",
+      "bytes": 1213,
+      "sha256": "f9bbb761e73c2f01af86869adb157822a8d0d83b400ae65f4b53e6f20b941285"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d16_float32.json",
+      "bytes": 1220,
+      "sha256": "aea448d3ba4b4f14cbca81de262784866db89f15472fb8d2d7d6d02bcea3a4f5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d32_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "3f6f983e62eddef590c57197d70d2d58ad1006eefb913e92b72891cd112f789d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d32_float32.json",
+      "bytes": 1219,
+      "sha256": "a9b9dea351b9e001e124f06437c225f907588b0b7f175aa3d6d104ba79d504fd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d64_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "709550e01b5c65884e83e2b0de897a555e246b5dd3fbe4654372937c99bb5fc2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n16384_d64_float32.json",
+      "bytes": 1219,
+      "sha256": "9b6977aba7bd96840f8980699958b3530a8f9100f6f4eb3f09a2bfca59299a87"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d128_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "b1fa9cb26632e8d25f6b8b633ce736a8ac7d35f4be9cfec485e5312428876136"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d128_float32.json",
+      "bytes": 1226,
+      "sha256": "1d2d913a3c1b8d63acfe808e706781d5979f64128b8ba14e4a140d5536ae9885"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d16_bfloat16.json",
+      "bytes": 1214,
+      "sha256": "933312eff0a078417044f8384632d5977baa8b2479085b2e9b2b9c8fba96f526"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d16_float32.json",
+      "bytes": 1225,
+      "sha256": "2b1c2e256a8eb01ce4af9368fb33753aea60c935b23f9121e252443672fae626"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d32_bfloat16.json",
+      "bytes": 1217,
+      "sha256": "6bfb6a3ecaf7cd0eb3b5c996193c19e69fa3666a163b075bbcc33a5b84884532"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d32_float32.json",
+      "bytes": 1224,
+      "sha256": "53c9c6dc71d735dc4e1b3056a9f493b11687c793920130073971c7ae10b5c460"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d64_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "34b831f0a1fcb669d06c4ff34c57ad7302e4e70427d5445ba97ad473b7e5801f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n2048_d64_float32.json",
+      "bytes": 1221,
+      "sha256": "01a637960b0b33456339e66187e1938cce2cb13686e8acd499bebd9bee2eaca9"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d128_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "75c54743149fdbe0ba9e999e52592f6e5263ca68908349f4fc29d9b744f0f04f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d128_float32.json",
+      "bytes": 1222,
+      "sha256": "321d3e9ca6d331828aeae4878218267e550efc2357ccbb6c3f5be6c6765a1d68"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d16_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "3f3c5b269a48de0443dccb5ea370a9a4e54460f3710a200066ed95355998f01a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d16_float32.json",
+      "bytes": 1220,
+      "sha256": "adf6715d2fa581394b533ffbd061f2d2afd265a5a0c4145e0fde816ae36c0308"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d32_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "4acc264861826c519080998819e5f44b8c57c0d51e56dab4c691d8b2397ee68b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d32_float32.json",
+      "bytes": 1222,
+      "sha256": "f31df0950071c1a7ee1bac97945ac8d7d351d8559230ff3e3fcfbd4390a7a048"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d64_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "64ac2725bdef0dae812bc159e0f6ea05c754bf056e088908c60b30cd45163e5b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n256_d64_float32.json",
+      "bytes": 1220,
+      "sha256": "f3977dee8bd3f6aae29398b168283ee30448d5fe2461864af86aef6c9cffd766"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d128_bfloat16.json",
+      "bytes": 1216,
+      "sha256": "981381d7c0968d5e79f7f4662d2c572afd2911d73e86d6f8fa79aa4b431d2e3d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d128_float32.json",
+      "bytes": 1225,
+      "sha256": "ff1224f261eb5e639dfe4c65182d074ef9976af8ae1f25883b675b3b843aafa5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d16_bfloat16.json",
+      "bytes": 1209,
+      "sha256": "3fe8fa550054c5836aba2e9a9f42d0ef77668bf357be0bb03693aedbb3697d34"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d16_float32.json",
+      "bytes": 1221,
+      "sha256": "da00d18aa1268b5182f1bddeef0359ac4d5581078fbae7ffb8e427a540de8980"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d32_bfloat16.json",
+      "bytes": 1214,
+      "sha256": "8b271aa8a4823cb603a4159612663565cc9c0fcb189576c2439a34047e1ddb65"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d32_float32.json",
+      "bytes": 1223,
+      "sha256": "6639fbabdf5958eeacfd166945084cb25519114a96940e2e16413b14e05ccfc5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d64_bfloat16.json",
+      "bytes": 1211,
+      "sha256": "51864e2e15c6a57ba4df1dd5d37a5fd7ae06824a989a18a2c7c7e5cd17b34c89"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n32768_d64_float32.json",
+      "bytes": 1222,
+      "sha256": "c881c9979bfd419bd5e6385b797b92d0781b76a8afe0f2e0a1625866e2b77553"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d128_bfloat16.json",
+      "bytes": 1222,
+      "sha256": "ef806458e899574b71270b3fd0a2445dc20ee3c30d3ebaad16cfe3256c0a0794"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d128_float32.json",
+      "bytes": 1224,
+      "sha256": "142d3c665064429e353f4e0061281c1fbee7f809b720d33bec7ec5c11a083bf9"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d16_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "08b41865cd132a84ce6ede9fbf8d095bf4e296938868ae23944dfe1cc75858ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d16_float32.json",
+      "bytes": 1225,
+      "sha256": "9f4b3803f88d39ecc20acaa7855709111572e1d175e406a4b17339696ae41191"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d32_bfloat16.json",
+      "bytes": 1220,
+      "sha256": "3dd6e5e96e0e086584d56737d4a83e4619769d483b1c102b6c5c8fda28589545"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d32_float32.json",
+      "bytes": 1222,
+      "sha256": "2b4bf47dee4a844de19288e885ef753ec34fdc92621d1157e4b2a789b1fa775d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d64_bfloat16.json",
+      "bytes": 1219,
+      "sha256": "d30c840c51e82511b87ccb97db5bb3229da1c6279c897997d3496bb23a75f55f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n4096_d64_float32.json",
+      "bytes": 1221,
+      "sha256": "1c055836ae394adcf98dd804bc9a1729988c6c6e1e2d10beeccbf63a63c23d62"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d128_bfloat16.json",
+      "bytes": 1218,
+      "sha256": "150398c8fb4ee6e3d20ebe5f6034c51468b5782e4ac908a07d10118ca037a2f3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d128_float32.json",
+      "bytes": 1220,
+      "sha256": "8deabbd2621b8f2f1aae2d36c8f78ddec3f2c50185edc62685416c9592651500"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d16_bfloat16.json",
+      "bytes": 1211,
+      "sha256": "265be8f54d188fd5cb8f03997f5a9d1c2a28e80b2dd843239a8b108369503671"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d16_float32.json",
+      "bytes": 1217,
+      "sha256": "b1f0f713d566daac799008675d81c1265b9ff2299dd219f9c169b1a36f4d8b31"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d32_bfloat16.json",
+      "bytes": 1213,
+      "sha256": "29f95315879371b8754ee46e1a3635ef80fe8689dc21156f4a6f92af49c18a5e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d32_float32.json",
+      "bytes": 1219,
+      "sha256": "057ecf809940034ebed8c8a95348b02ead448e02266b983aea7ae58878921cb4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d64_bfloat16.json",
+      "bytes": 1214,
+      "sha256": "c490a304840330c853139830a945e2ad89c1c78bce215460c1592b272f6948ca"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n512_d64_float32.json",
+      "bytes": 1219,
+      "sha256": "41e012e304b6e20121d40dd4355829f0424752288ed6b90d4030dcaf3e68d19a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d128_bfloat16.json",
+      "bytes": 1224,
+      "sha256": "3c313d6bf599e2896fc9bb21b46363b24b53c873f88b12bb4f84e7e80f87dbcd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d128_float32.json",
+      "bytes": 1229,
+      "sha256": "30cd1023534ffbbe0780ae0eb4bc0b869adec58d446640f78af32bafa7e5e75e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d16_bfloat16.json",
+      "bytes": 1217,
+      "sha256": "86e8ff0d89f5ab8756d3e84d01afc1a14ce6b6192ab8d7307fbfca52e0e2b251"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d16_float32.json",
+      "bytes": 1224,
+      "sha256": "0105615106e30e50cbb5a0c2c1ab75827fd57742ab9ecf79dc63de2c753c9d8e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d32_bfloat16.json",
+      "bytes": 1221,
+      "sha256": "45d09348a8397f3ad3aab61bb69d95e9765f51583795211f631f7af7fd396639"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d32_float32.json",
+      "bytes": 1226,
+      "sha256": "a5b2f5b455e7d44bd900e4dd776940bf4f220d36048994bc715a8680b3061ad2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d64_bfloat16.json",
+      "bytes": 1220,
+      "sha256": "c0869a68fea9cff6f7eb11a2b20da88264eb9e5ded3f9f4a1f301deafb686b20"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n65536_d64_float32.json",
+      "bytes": 1225,
+      "sha256": "3dd21d6ee3231a59b5198f11013f2e2562ee0c1f6004352c093326a9405b26fb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d128_bfloat16.json",
+      "bytes": 1217,
+      "sha256": "66cfb9e6a4e98301b4583757f4ca7ce8dbe284da65c7fac3aebd022851e5ec30"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d128_float32.json",
+      "bytes": 1217,
+      "sha256": "51e575524a43e1036bf4733681138ea9272acb02c87d2bd3b58cd5b31cf815ab"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d16_bfloat16.json",
+      "bytes": 1210,
+      "sha256": "bcb7abaaaf1a5b0adc35d73468cf40e4907597dd9ca4fed5e1bfb108eec1fc2f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d16_float32.json",
+      "bytes": 1218,
+      "sha256": "b492bc8375d9c35d78699bf3481305d5baccb1e943c25cf3c55e6fb29931e338"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d32_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "04d32d865150834fd608c99ac1680570854aad7def59d8bbd76de463d93b780d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d32_float32.json",
+      "bytes": 1219,
+      "sha256": "6916ed870eadb84770edcc24bef9b5a82e16855a5b56dbafe261f95d5d8cd415"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d64_bfloat16.json",
+      "bytes": 1215,
+      "sha256": "edc0ecd87bcbf55699b7c8c6b8b8e24687b09edee88fb6b32d34cd6646e0c36e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/naive_n8192_d64_float32.json",
+      "bytes": 1217,
+      "sha256": "dca59a0c965e02bdc4e3c292c40dcc92ec55ef3e6b64f0acfb7bb10f60154f27"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm128_bn128.json",
+      "bytes": 1269,
+      "sha256": "93ecc5c8648c4744e5ba960f900aa68bb26649c7e9a3693acdb948b8c0636943"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm128_bn32.json",
+      "bytes": 1269,
+      "sha256": "904c9e1711e89f7fa1f9948b0e94599d65ceed7b35a304e5cde818094922ff74"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm128_bn64.json",
+      "bytes": 1270,
+      "sha256": "ee758b1e3bd51e178f427def8039ba834a85d3bd9b6e49e6ef8c737542074ba4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm32_bn128.json",
+      "bytes": 1270,
+      "sha256": "2e8990fe3973d73080f0fafbb8d7e7c3995d734e9f520af5b7fc3f89ebc4d5f7"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm32_bn32.json",
+      "bytes": 1266,
+      "sha256": "72cef8054ec394c0f8c1cd5b7aec26d8bc06781cf9fb71aa7a0201991ad972d8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm32_bn64.json",
+      "bytes": 1268,
+      "sha256": "e2d98fc3e90a921e8bbfcf7b8902f23ff6ef365892b531b6515668f28b8935eb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm64_bn128.json",
+      "bytes": 1268,
+      "sha256": "575543167a39f14cc3f714973e568de7b948b0e0a3d4b7fd5e6d2df1ff904cfd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm64_bn32.json",
+      "bytes": 1266,
+      "sha256": "5b78eecd8f414d11df61c5aba2251a81c37e16294101fb38afb667330a07ba88"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_bfloat16_bm64_bn64.json",
+      "bytes": 1267,
+      "sha256": "f852d4e50c7edccc06e68aa609f4152c83c89f94b6622031b31ccf374dd4a6b4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm128_bn128.json",
+      "bytes": 670,
+      "sha256": "ea524090d2c8965a9b9e7727e3fac4dc3d0ab6cbda08b40147d5cfdbdbecdc63"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm128_bn32.json",
+      "bytes": 1270,
+      "sha256": "a7493966bc20b6524df8d113eea06d0feac82376b93be53012a8946c1d44627a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm128_bn64.json",
+      "bytes": 1270,
+      "sha256": "9d9274415037f9f7ee1ce9949d99467a09844a08f14638cb372775c377187a94"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm32_bn128.json",
+      "bytes": 1269,
+      "sha256": "ff654de7d0ad55e21589130f00c913b257bfa8c2d87c3c9b45d8784e8eec3ed6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm32_bn32.json",
+      "bytes": 1270,
+      "sha256": "49c7f93396ee43515413f9ca85e3c257b41696f680150368291c0b11851355be"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm32_bn64.json",
+      "bytes": 1269,
+      "sha256": "2ebf8ee2f4d86638f9e409dc53d88f13d9a9cfb1ebf93c80dadd78608cadb2dc"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm64_bn128.json",
+      "bytes": 1266,
+      "sha256": "c56660b9dcbf767419442142550b699021686b7d36b067a6219c156716059a41"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm64_bn32.json",
+      "bytes": 1268,
+      "sha256": "a85c573efd66a5a588f46bf5a0b6709d35c2b1c4a849f7bdbc1cc57483fbb8d0"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n1024_d64_float32_bm64_bn64.json",
+      "bytes": 1264,
+      "sha256": "18f18e44d2910203414b932c0891a43fc62fb9b47ca8f06fd2f4b8e9416e702f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm128_bn128.json",
+      "bytes": 1265,
+      "sha256": "14c47062b98a976855a91853dc1c143ed2f04ce04df64c4a751285486b05e9a5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm128_bn32.json",
+      "bytes": 1264,
+      "sha256": "512c5b18e1bd91d04cea1f0c664e1406ab851e6c653db8e30806a2d58fa11c13"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm128_bn64.json",
+      "bytes": 1265,
+      "sha256": "a392ac77b20c466c8d14c5fb7ed1f3d02348dd52e4c5a969ff31aede17c4e8d8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm32_bn128.json",
+      "bytes": 1263,
+      "sha256": "b8162451694fd9c45b6ada1783f3a5caf6b96ddfe31123190eeb60eb6af0155a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm32_bn32.json",
+      "bytes": 1261,
+      "sha256": "90d28a011bc8b61a69addb9c4b1cb46d757c3f6fb188a5030362acde1dde9216"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm32_bn64.json",
+      "bytes": 1262,
+      "sha256": "fe8b2330d20a018f3c16b76120c789a1250f4936b60c14e02fd7910d82e5972d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm64_bn128.json",
+      "bytes": 1265,
+      "sha256": "2d0d2be8630c14a3621260ce73af2edec7e8fab17a9fafea8d3c7b0a823e7e93"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm64_bn32.json",
+      "bytes": 1262,
+      "sha256": "6d03fc7ed3501309d80bf434835ebc5a14b6ac11d5cbaf755a817b3991dd4db2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_bfloat16_bm64_bn64.json",
+      "bytes": 1263,
+      "sha256": "7d46e2b8cebb5369c59e59c657279038d7a9efed0692217dea64f3c5cfff28a4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm128_bn128.json",
+      "bytes": 671,
+      "sha256": "8ec4871af3bf0aad6bbb3fc80f4c56f98adb8040e1b92cf8be749bdd3d809445"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm128_bn32.json",
+      "bytes": 1266,
+      "sha256": "1c96ee16b258dae3403f232b988c62f455cd031be869904ad616b8f9ceff1102"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm128_bn64.json",
+      "bytes": 1262,
+      "sha256": "5268e0dae67c31632618b1d6a9d5dcde831d19a17e31f8befdd7ba5b9b152b5d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm32_bn128.json",
+      "bytes": 1266,
+      "sha256": "0250f18b857ddcf2e5e29524aa155ae38e6cbd216388d9d7834f6e8b817f5bcf"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm32_bn32.json",
+      "bytes": 1265,
+      "sha256": "0833dd7cd172867dc21e54802097a68abfd06c363fdb7a936b25aa2d1b6a8bf5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm32_bn64.json",
+      "bytes": 1265,
+      "sha256": "a596d7c7fb5b7d63612dfabfbc528a188c70aeaecd14dbb47575f5860a31af71"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm64_bn128.json",
+      "bytes": 1264,
+      "sha256": "90ac30c558e88bd5790c77af1e427d3127656d35f2ecfee92dfb2b7545a0298c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm64_bn32.json",
+      "bytes": 1263,
+      "sha256": "7b2bf5a571f0a7d554bbd701045d0fb5cdca9fcb72cfb57244ea7725eb9036ea"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n16384_d64_float32_bm64_bn64.json",
+      "bytes": 1264,
+      "sha256": "4bb0847ef3ad9e454af3bb32e4c0353409774765e5bafa617aa9426830c83689"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm128_bn128.json",
+      "bytes": 1268,
+      "sha256": "482fed57f806c6e861f6a66edcfb9045da7170a0b12b24b5c7ad23564ac543f7"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm128_bn32.json",
+      "bytes": 1268,
+      "sha256": "e0d3c8d6b95cbf2b3a0e821fcb2e7eacb0acada56ac4a8e5a05a9f1c60fad5fa"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm128_bn64.json",
+      "bytes": 1268,
+      "sha256": "09c1771e58d22f5b0ffd721723f98cbca1b27b82e8f2a87cfb49ef81236f32f4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm32_bn128.json",
+      "bytes": 1269,
+      "sha256": "fa218f90fa2961d54844f565c3a7cbb0c79c96dfc07453de54156a41540d686f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm32_bn32.json",
+      "bytes": 1266,
+      "sha256": "ad1e587f97ebb6c4a7e2a3f67359274644565d8c210f06a6181dbac27b3706d4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm32_bn64.json",
+      "bytes": 1268,
+      "sha256": "dd2c39e9aca9ae02f00f81c8000aa9196750441bcb4114386857bf3de6e2f81a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm64_bn128.json",
+      "bytes": 1269,
+      "sha256": "6bf0f12efe1eabe21897407cc4f16fe9de56e6828d4c85e0e3c2b79e76a19d82"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm64_bn32.json",
+      "bytes": 1263,
+      "sha256": "7c64ccdf2d77ef9eb1c7aa78060e48e7a024472d71f30ba6df09c279e8882b6e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_bfloat16_bm64_bn64.json",
+      "bytes": 1267,
+      "sha256": "be33ba41ebe69ce50680c65ad9fae62fc7006a2343746e569a131331bef73ea8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm128_bn128.json",
+      "bytes": 669,
+      "sha256": "a65bcacc732e72485977abede5598ee3bf6c42a26549f08a4dc306ee17c5729b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm128_bn32.json",
+      "bytes": 1266,
+      "sha256": "e01c1765cf6acbbe0b8f3977df19a39b7ec9f017f7145a2d4cd1666bd52718ba"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm128_bn64.json",
+      "bytes": 1266,
+      "sha256": "002765d9f65b832af5bec4398c0d3d3243752ba1e4e1c285fa492e3b85c37cf8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm32_bn128.json",
+      "bytes": 1264,
+      "sha256": "012631a878b60b648f164492f0867e42b21e0eac8f7334abd3ae06a661ce9378"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm32_bn32.json",
+      "bytes": 1267,
+      "sha256": "09824ba3ed475de0b9853ffc7842ac07db488eaea47e94c2a4e381e6c952328d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm32_bn64.json",
+      "bytes": 1265,
+      "sha256": "02d1514c1586900ac8010ec89556bfc20d3c7a068c6ea7f0d6a81d3f53562942"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm64_bn128.json",
+      "bytes": 1261,
+      "sha256": "2525a55d53eb348dfa3366983ad3f541382e59ead6fcacf39848c7df492ed120"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm64_bn32.json",
+      "bytes": 1266,
+      "sha256": "64a3c4b1cf920a61c5c0eb0a7ccbc749b6dd84e7cd61884769ab41dad8bc006f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n4096_d64_float32_bm64_bn64.json",
+      "bytes": 1263,
+      "sha256": "7a155c546f09096041641a5d89a1051f22c0b25b0a00ba35c4b46baabb1e2b72"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm128_bn128.json",
+      "bytes": 1265,
+      "sha256": "0772deac90b85df15ac9ba528795f055fbc3b9dfb98c75b69da794f74f374135"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm128_bn32.json",
+      "bytes": 1266,
+      "sha256": "3506b39a7ad4ff3c97944c98aabe480a458ee63ad3bda6c7a005bf2ded7fe470"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm128_bn64.json",
+      "bytes": 1266,
+      "sha256": "4833c605eff6ee79980fc0e4e4939157d5a206fb167a8ea53fe1ca3e2b5c3acf"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm32_bn128.json",
+      "bytes": 1266,
+      "sha256": "09f4de7039ed13f5436ba080113a43ac3c66e9fdeec2945c3f4047c8e3683df0"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm32_bn32.json",
+      "bytes": 1262,
+      "sha256": "fa0d388d4b9f7340990178de3e03a31fb837008c6b6211667215fbfbf52502fb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm32_bn64.json",
+      "bytes": 1263,
+      "sha256": "af22cdbc454a022850ffac69bc8f132e03c380e727bcbbf97c986bc79468d18f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm64_bn128.json",
+      "bytes": 1264,
+      "sha256": "ff9d6a5e42bec3370764bfcb69baba5ebba328de87b503bf51b8e07e1cc9daef"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm64_bn32.json",
+      "bytes": 1261,
+      "sha256": "53f7efa7e2812cc1ea08214a07cd856b3a94ffc01591b2b8b393cc3a9bdb35c4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_bfloat16_bm64_bn64.json",
+      "bytes": 1264,
+      "sha256": "d64fe1bd75a254d175b938a535eb13e385a3c1334177db3946b891416c748fac"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm128_bn128.json",
+      "bytes": 670,
+      "sha256": "f1558a151ff49272f2d0de889477e5a9ca9d58ca434a31106f75bbbc577d298b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm128_bn32.json",
+      "bytes": 1268,
+      "sha256": "afca4b07a2fae9cd223e0948dbc599cbd95897826b44d68de7c435ee8af7e5f5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm128_bn64.json",
+      "bytes": 1266,
+      "sha256": "3681cf89300371fa491c270a8418e008481e2d97f18d7c588263344da742d09c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm32_bn128.json",
+      "bytes": 1264,
+      "sha256": "adee51a1d253b7a6549963bab9ec281ffc7254673bd006cf05e9a43a10415059"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm32_bn32.json",
+      "bytes": 1264,
+      "sha256": "37dbd14ca4f878bd0d64b828dd734ff8003a9a113a61d2c2ef11e0e1f143321b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm32_bn64.json",
+      "bytes": 1267,
+      "sha256": "ec1036fc6d1e31cedc949abe3b3553fa16d4c801b62160c2d93f5f4bf368477e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm64_bn128.json",
+      "bytes": 1256,
+      "sha256": "2851cb3dbb1e3ee13f9d346dc98f31687f3347343c0524a1bdac730d10df6686"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm64_bn32.json",
+      "bytes": 1265,
+      "sha256": "a77cb96c5da4452cb98a73145340ae0c34436216698481e9c9577c99f4e8161a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/cases/tiles_flash_triton_n65536_d64_float32_bm64_bn64.json",
+      "bytes": 1264,
+      "sha256": "7c7b0fb0eea267322016ce94367a025a27c7c122bbac9dc41d913bc5e655b9fc"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/flashattention.py",
+      "bytes": 23423,
+      "sha256": "5e2608d0f7eea093150e4e8748d4f74d53fdd109f752cab1e5df50016c7d1117"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/manifest.json",
+      "bytes": 2824,
+      "sha256": "f726bd4d6a4bf4fd51004321c6a07b3a1625951ff89e93982c3602cd5371560a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plot_attention_benchmarks.py",
+      "bytes": 6919,
+      "sha256": "6bc9fd0248456953db1668f7eb2c6d7f61594b939310f0de7638db0bd0fd6ae9"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/memory_forward.pdf",
+      "bytes": 33084,
+      "sha256": "07528e35676076ba259a373599822fd808bd3218ed10f1c82d9ad9772de973ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/memory_forward.png",
+      "bytes": 160821,
+      "sha256": "0daaccdcb8d89131389ea8deb7fd21fc11d7c4b94643842abd4e2bb0f6c3a64d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/memory_forward_backward.pdf",
+      "bytes": 33836,
+      "sha256": "1793d4a823f417c1f7e70695722cd2262aa4fda13cc152575f03802eef3b5016"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/memory_forward_backward.png",
+      "bytes": 166509,
+      "sha256": "e84ee64f97cbaa4c56907a880eb2203b23a7d5c6488bbb390027dc1d14c2d09d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_backward.pdf",
+      "bytes": 42121,
+      "sha256": "a3a5c533679ecd3d534890ebfe217e270ad1322d49503c953b79d48cea3a808e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_backward.png",
+      "bytes": 206840,
+      "sha256": "37007b5be3f2a43a8a1dfbb9bb0eaebba05ad783a1e254763d6350b9e8cd55cd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_forward.pdf",
+      "bytes": 42247,
+      "sha256": "571f5d1fffe5471b14420f9c963dd800274a3ba63d513a690d416c3a5073c11e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_forward.png",
+      "bytes": 206768,
+      "sha256": "957b7e0bfba37062e23c6be823c38e758941849e8f865979d75bf9b82f3e2558"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_forward_backward.pdf",
+      "bytes": 42353,
+      "sha256": "90443fb0e64dee34f5655a2b5cd77888153de1204aeefbb09f87adbf8f39f530"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/plots/tile_sensitivity_forward_backward.png",
+      "bytes": 218697,
+      "sha256": "c6cd5a41e690c944a917575a658772a6c3267c84765785336c6122fadead525e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/progress.json",
+      "bytes": 155,
+      "sha256": "1687ce24f26801ac00652e1c9ac32b1b9dbefee4eeb6fd5c5a0449773401c1ee"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/results.csv",
+      "bytes": 41937,
+      "sha256": "94f318b792d3d9756e07185e2e4989ad20248478f5a658624ffae9f1ad07176e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/results.md",
+      "bytes": 24438,
+      "sha256": "d7c69e0de438a6d20b83d19f8bd93d58796445d45a938d170a2bc0337c810878"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tile_sensitivity.csv",
+      "bytes": 13904,
+      "sha256": "2768c4d4675bc4bcaca3af78cbc7fc03447f27191ecb7c7887ac1749fe1dc1ce"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tile_sensitivity.md",
+      "bytes": 8046,
+      "sha256": "1b1c7d591acfacb20de41416f5abcfbcb5a8b05eb7bdb2d037540a91b0b42650"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d128_bfloat16.json",
+      "bytes": 1252,
+      "sha256": "7c47e8b9cd314d6f5171f760370ad5fb1c0c5cf44f993c55fea49d5d11063523"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d128_float32.json",
+      "bytes": 1278,
+      "sha256": "8619370c042a8c8a38a8c92bd3a67e2f86fcdb56f203fc65580774e6b2180592"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d16_bfloat16.json",
+      "bytes": 1247,
+      "sha256": "8945066b7f8691207efe6d6bef87d1a65b02dfb5d97daf9f546ece03277a022d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d16_float32.json",
+      "bytes": 1276,
+      "sha256": "9f9bf642a65b47a6f664961cb762d026a7f5807de7be8230e2b45d2eb4ef75f7"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d32_bfloat16.json",
+      "bytes": 1250,
+      "sha256": "7e011c7c2ebaefb871a3c971c2b12b15bb125754e17ec09c8bcafb81eec9188e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d32_float32.json",
+      "bytes": 1276,
+      "sha256": "0e087fbe4699f5b17eeebba85105aeaf3023d3527e7dbba236f7d385b21a3a87"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d64_bfloat16.json",
+      "bytes": 1227,
+      "sha256": "e2eb4c08c28edb0301d8572c68b373e9d3cd43cb9231cd7ee6079cad7be336df"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n1024_d64_float32.json",
+      "bytes": 1275,
+      "sha256": "84b7083e53458eecb01c8ccf3a48f298cbd1ffad0a57134fcf4fdd153f7eb9b8"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d128_bfloat16.json",
+      "bytes": 473,
+      "sha256": "f792b3f9e5ba6bd33b3a45f846241fbf8b34c417112a87fafd2f7897c9b0c4ef"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d128_float32.json",
+      "bytes": 479,
+      "sha256": "a405ed0f8776fc50cd094b39ee9ef04ae21af784a2ddea9e139c19e8de65c9be"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d16_bfloat16.json",
+      "bytes": 471,
+      "sha256": "c683e05559084084a44579d0b5f47053ede95e8a7617ec535c23f2b41c6ef546"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d16_float32.json",
+      "bytes": 476,
+      "sha256": "c32729685090bf99c0104a84fc65cdba608bb6e250e32813431b38995028b6db"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d32_bfloat16.json",
+      "bytes": 473,
+      "sha256": "6cf145cc5ebd425095081a954f843b646038a1dec8fad47544af9c1adfc970ab"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d32_float32.json",
+      "bytes": 480,
+      "sha256": "80dccb6b4fa0ccde52738f34ec7f2594d1f33b5e17241b64f66bf1acde89ef52"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d64_bfloat16.json",
+      "bytes": 465,
+      "sha256": "886f7dceae11e4eda290c042c19db5115152d17ff97a329decb137533a9456a1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n128_d64_float32.json",
+      "bytes": 479,
+      "sha256": "5a32e7a085a85e66735c95bf9aa1d34937ede2de2bef5873cfdea6b7f22f12b2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d128_bfloat16.json",
+      "bytes": 1252,
+      "sha256": "0e040c1249ab25ba68df0d8d9a67141b918a909184fe8244b985f44baee45db4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d128_float32.json",
+      "bytes": 1273,
+      "sha256": "1b449c243364c836356628e58bd8a83c869b672c29290e152b8971f2a567f7c1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d16_bfloat16.json",
+      "bytes": 1247,
+      "sha256": "1259954fab33a0f30111af4e2e6ee234c8c08065f49c719e4b0e35d43bcbce32"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d16_float32.json",
+      "bytes": 1273,
+      "sha256": "97bbee911c69abbdcf87b2d672b05c92821faff4af402368270b59d1bf27896f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d32_bfloat16.json",
+      "bytes": 1251,
+      "sha256": "ffc093b319b00c236dd5fbe30ab51e1f26514e36b57684eddf2043fccc69d5c3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d32_float32.json",
+      "bytes": 1279,
+      "sha256": "e26f7b2e49b8d50558d4211ead75bcf641bd5cd40d5ee3b2fb2df3cba9c6f19a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d64_bfloat16.json",
+      "bytes": 1227,
+      "sha256": "b0c21dda26a89a0dea7d9c07f19cdb9d87bdec36220ec1ef56176db7e5518977"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n2048_d64_float32.json",
+      "bytes": 1274,
+      "sha256": "76f8125919a40b7dc212c88c2bef414a5b899fb21cfba8631e0d370bdab7fe87"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d128_bfloat16.json",
+      "bytes": 472,
+      "sha256": "cdae4fafb08c170f4bb131e6c9f7a901b818346cb5cb0e03360a46b1c6b9da83"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d128_float32.json",
+      "bytes": 480,
+      "sha256": "4cd18b61b5f93554cf319d06e86c5119e1c7ad109eb7da836c89dcf0b88b4207"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d16_bfloat16.json",
+      "bytes": 471,
+      "sha256": "f7ca80de7f4ae8071b3dc9a6f6233eba7355913d5454fd2d25781ac3a2759951"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d16_float32.json",
+      "bytes": 480,
+      "sha256": "b5a8a47861cfcb1d18b35210b17697c11015bd60a36b716a89abf1ca45ecb0fa"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d32_bfloat16.json",
+      "bytes": 472,
+      "sha256": "ac780bf8b809b92a490c1baa8354ebe6ee5db007c511c313c4cd568d8561d3a2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d32_float32.json",
+      "bytes": 478,
+      "sha256": "e6d9bde95b56c77c6a03fc4c71987690ff4beae38b3f8c4a11ba52061086b2ff"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d64_bfloat16.json",
+      "bytes": 465,
+      "sha256": "e81a4dda30c7e80cb8ea809d81127da0219fa3bd5928b9848adba8e11164164e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n256_d64_float32.json",
+      "bytes": 480,
+      "sha256": "245380b7df170571b2ff604f2ab8cc25417011389f55f2227b550b1972ae5e52"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d128_bfloat16.json",
+      "bytes": 858,
+      "sha256": "4e85d1b25afa944e0b1a919dd6b81d35e2d7ddfae6ac4b237801348967ccc430"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d128_float32.json",
+      "bytes": 876,
+      "sha256": "9394cd1fced4872ced456fd1667f23031121e5b120f717fa0c64d357caedc033"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d16_bfloat16.json",
+      "bytes": 856,
+      "sha256": "21b9e02290db5e7ba32364d5614c8e8b1b8fdb2da104c7c641ff4ead507a3f07"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d16_float32.json",
+      "bytes": 874,
+      "sha256": "030128e73f6ea63737cf17315115328b503b7ae06fd83b71aea4bb84bc00014b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d32_bfloat16.json",
+      "bytes": 860,
+      "sha256": "c9cca2773ee32757fb7ac4af323a3a22d03a6564c8a31b3183282f1b584522f1"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d32_float32.json",
+      "bytes": 873,
+      "sha256": "da44674f2bee5f5aa74d3b31e6cbba24120a2dac2602530f40913e77b18ed5e3"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d64_bfloat16.json",
+      "bytes": 844,
+      "sha256": "581de6989618b283a00c22c5cdf4072b7115434be376c1df11e697b63805b40e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_pytorch_n512_d64_float32.json",
+      "bytes": 874,
+      "sha256": "6495422fa214116f4e0adf7a4c6b9a363e352b82012c72ecd3691154d945b561"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d128_bfloat16.json",
+      "bytes": 1632,
+      "sha256": "1c85775426a3fdd95cfa582a7003903e0ceee00ad9e6c8a00901b520cc1be64a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d128_float32.json",
+      "bytes": 1651,
+      "sha256": "c1ed4279d71f5cba242c5234348be086a2d45d0f1bc0d3d82b29fb677dd2ab66"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d16_bfloat16.json",
+      "bytes": 1635,
+      "sha256": "d7f06c0d11883539a303176bb356d2c0de9bcf6ae2b2275d4e6a5f696f766610"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d16_float32.json",
+      "bytes": 1648,
+      "sha256": "2cd4a76e385e55208b12112c2ede7fc9afb47eb3f461ed92274f3527a8b30f3e"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d32_bfloat16.json",
+      "bytes": 1628,
+      "sha256": "cf243ab64ab4db0c9eaf8d7ba950ef8ae9be596eba80a73e4136bc06f2aa7615"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d32_float32.json",
+      "bytes": 1662,
+      "sha256": "5e1e9e8f6c452aa9e373740fff4538cac79c3cdbf864025bf40869d695de7926"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d64_bfloat16.json",
+      "bytes": 1627,
+      "sha256": "0228dbb6d72c4690f99cee1549d66c223e37ba6895443806aa4c743af4379126"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n1024_d64_float32.json",
+      "bytes": 1649,
+      "sha256": "477240cf220d0c31b65f58942b53306c9c0a21b03733d74bc3c3d60ca5aebf5b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d128_bfloat16.json",
+      "bytes": 1629,
+      "sha256": "da1cbfd23ac1143a342b0e41315d48e9ea77c83111df8d7e2333cac933137736"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d128_float32.json",
+      "bytes": 1655,
+      "sha256": "16b8d9270b9d6e844a55027d49573a2f6b3423c9ac1810c3cb85d2d0c7525673"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d16_bfloat16.json",
+      "bytes": 1633,
+      "sha256": "6dd18e976c48bfcdf852e0c3265158472dc0b303e0eedc31c623244e4c494ca2"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d16_float32.json",
+      "bytes": 1648,
+      "sha256": "6526f7122657166af6f3bac1288f6e5b30e97e1e5cb6503ca0fc1adebffdd6dd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d32_bfloat16.json",
+      "bytes": 1631,
+      "sha256": "a03ce1d1e582c56c081cf0f9b7e632dbc3d7e9f0eda6dc38b68de3b999f3a9d6"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d32_float32.json",
+      "bytes": 1661,
+      "sha256": "a5e76b73b324f70f3dac5d9d0a0c5bc9f0e5f26a8d56da43a5fae1dc2fd1e92d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d64_bfloat16.json",
+      "bytes": 1626,
+      "sha256": "1bd171ee8d5a6c59f5f681ba598c5bb530c06c19d50cabd3c9c6b7defc9b0d87"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n128_d64_float32.json",
+      "bytes": 1650,
+      "sha256": "989cfb742f828b5705dbed71ac378a682bdcdec09a9fbf74854c523f4214cbbb"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d128_bfloat16.json",
+      "bytes": 1631,
+      "sha256": "80d278eac764a6e1651f2c50a1809f89712117d9a35970072ba7f3430aea2fff"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d128_float32.json",
+      "bytes": 1654,
+      "sha256": "9e11f2f829cea5aa26ed5d2218392dc7b7182bc1fd41cdbae323924fdc53b523"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d16_bfloat16.json",
+      "bytes": 1636,
+      "sha256": "382a1df9653e2e981bbab2f0d6fd4212e2267c133c58043478fe600fe7893939"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d16_float32.json",
+      "bytes": 1649,
+      "sha256": "f7dcbae23ac52329fb1d8e1f283905cb574b4adcee1b7c0ec6e61ae199e137c5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d32_bfloat16.json",
+      "bytes": 1631,
+      "sha256": "9d704de5f1cfa46f207b77cedaa1622c34bc0b30ac633c85534f40779898b3ea"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d32_float32.json",
+      "bytes": 1659,
+      "sha256": "ab2f7bcca82b56f1b6dda14c00f8e9b567fb5336899cb6ea96eb6cbe95d2a1ee"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d64_bfloat16.json",
+      "bytes": 1624,
+      "sha256": "977f65408ba28b8f8b932b77d96ab2f01b071cd13587a94f4847a4d59cd1dc1a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n2048_d64_float32.json",
+      "bytes": 1648,
+      "sha256": "1eb78440974d97c5fb553428b955f9e83455c01f3e8e5dc58b2ea4fa247e009b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d128_bfloat16.json",
+      "bytes": 1630,
+      "sha256": "4249e6f243631d4e572638139ccc3c20d52f92ecde9f0d79b60c70a5204adce5"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d128_float32.json",
+      "bytes": 1650,
+      "sha256": "5a7150a3d1822995b3546c6941c167256034565269acf58da2ea94b817c3206b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d16_bfloat16.json",
+      "bytes": 1635,
+      "sha256": "a86b26dadd1f6668379d6daf0016bc1dc1011b7efeef1d5ea439c923885d4db4"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d16_float32.json",
+      "bytes": 1649,
+      "sha256": "162a77cc1ca5e479694015dc30e301e9f71e8040c3d9db19ac05403dcd3efbf0"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d32_bfloat16.json",
+      "bytes": 1628,
+      "sha256": "22cb45025c817f73be0d9f4b393812a8e03f8fd3b386f51beb9f86637479117d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d32_float32.json",
+      "bytes": 1659,
+      "sha256": "562910ad38b978603d8f08261be32e3441a37956a18fac169f2a065c75f54edf"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d64_bfloat16.json",
+      "bytes": 1624,
+      "sha256": "d4c942f6a75e33cdd2303eaa96408d3e0f8ff63b008b4c4a5df35e2c94d75cfd"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n256_d64_float32.json",
+      "bytes": 1648,
+      "sha256": "71e67b97b542fceb27db421c33ceebd68262f4b1914b463ed02874b60772499f"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d128_bfloat16.json",
+      "bytes": 1631,
+      "sha256": "6c75612ed2435c3a717b8c56717158d080155e1566e6022e46ca7d6c6987f80d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d128_float32.json",
+      "bytes": 1652,
+      "sha256": "0f7a82973caca331ed56990cf9169fdf573f50eefdff7ae03349eaf10ad0ccea"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d16_bfloat16.json",
+      "bytes": 1632,
+      "sha256": "492a9e37f2377b6bbcf12cc2bee34031466c8204e27b2ce760741a43b301e37a"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d16_float32.json",
+      "bytes": 1646,
+      "sha256": "699af15223515e4bbd58448ed9f7d99a309f2f335d535ac57c6091e745b4ac68"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d32_bfloat16.json",
+      "bytes": 1629,
+      "sha256": "778bf7dbceb1f60730346b52a52aaaef96918e8b6a3f577d99e065bfc7bb698d"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d32_float32.json",
+      "bytes": 1662,
+      "sha256": "c8005827e98c52f1964c88cd663830ba85724c406bb2ee4bbbf427c1bd1d4cef"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d64_bfloat16.json",
+      "bytes": 1627,
+      "sha256": "3c5ffb85442ee388a9414517eb25b7de2963db19592b428dd6037412bc314f4c"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/tuning/flash_triton_n512_d64_float32.json",
+      "bytes": 1649,
+      "sha256": "2288a88595cf2b2c85fc539affe590c48929e93d9722923398a62dbacc2d181b"
+    },
+    {
+      "path": "benchmark_results/h200_memory_tiles/uv.lock",
+      "bytes": 212005,
+      "sha256": "fcd1e093270cea223e8c8048af5416c73afd3e9e176b7d4d4b46950e689bda86"
+    },
+    {
+      "path": "cs336-basics/pyproject.toml",
+      "bytes": 1113,
+      "sha256": "d45c37636972a71f859497df06d1694364c1f8ca2b04c37f46215ba4c1a63639"
+    },
+    {
+      "path": "cs336_systems/flashattention.py",
+      "bytes": 23423,
+      "sha256": "5e2608d0f7eea093150e4e8748d4f74d53fdd109f752cab1e5df50016c7d1117"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 1254,
+      "sha256": "a6cb1d174906de986d7d0bc50c04763c48483aea17106fd0853a53033def1fd8"
+    },
+    {
+      "path": "scripts/benchmark_attention.py",
+      "bytes": 20225,
+      "sha256": "be55301f43adfcfdcefe1c5386956f024adc95bb324f828c0d16848bc8f68b6e"
+    },
+    {
+      "path": "scripts/plot_attention_benchmarks.py",
+      "bytes": 6919,
+      "sha256": "6bc9fd0248456953db1668f7eb2c6d7f61594b939310f0de7638db0bd0fd6ae9"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 212005,
+      "sha256": "fcd1e093270cea223e8c8048af5416c73afd3e9e176b7d4d4b46950e689bda86"
+    }
+  ]
+}
