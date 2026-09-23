@@ -1,0 +1,93 @@
+{
+  "implementation": "flash_pytorch",
+  "sequence_length": 512,
+  "embedding_dim": 16,
+  "dtype": "bfloat16",
+  "experiment": "main",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130",
+    "triton": "3.6.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "tuning": {
+    "selected": [
+      512,
+      512
+    ],
+    "sequence_length": 512,
+    "trials": [
+      {
+        "tile": [
+          256,
+          256
+        ],
+        "validation": {
+          "sequence_length": 512,
+          "atol": 0.05,
+          "rtol": 0.05,
+          "max_abs_errors": [
+            0.007352173328399658,
+            0.02783811092376709,
+            0.03564715385437012,
+            0.03207206726074219
+          ]
+        },
+        "ms": 2.8320960998535156,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          512,
+          512
+        ],
+        "validation": {
+          "sequence_length": 512,
+          "atol": 0.05,
+          "rtol": 0.05,
+          "max_abs_errors": [
+            0.007352173328399658,
+            0.02783811092376709,
+            0.03564715385437012,
+            0.025439560413360596
+          ]
+        },
+        "ms": 1.0738720297813416,
+        "status": "ok"
+      }
+    ]
+  },
+  "q_tile": 512,
+  "k_tile": 512,
+  "stage": "complete",
+  "validation": {
+    "sequence_length": 512,
+    "atol": 0.05,
+    "rtol": 0.05,
+    "max_abs_errors": [
+      0.007352173328399658,
+      0.02783811092376709,
+      0.03564715385437012,
+      0.025439560413360596
+    ]
+  },
+  "status": "ok",
+  "wall_seconds": 5.002138082869351,
+  "forward_baseline_bytes": 67174400,
+  "forward_peak_bytes": 69054464,
+  "forward_peak_gb": 0.069054464,
+  "forward_incremental_gb": 0.001880064,
+  "forward_samples": 328,
+  "forward_ms": 0.2759519964456558,
+  "backward_samples": 154,
+  "backward_ms": 0.5019840002059937,
+  "forward_backward_baseline_bytes": 67174400,
+  "forward_backward_peak_bytes": 70969344,
+  "forward_backward_peak_gb": 0.070969344,
+  "forward_backward_incremental_gb": 0.003794944,
+  "forward_backward_samples": 96,
+  "forward_backward_ms": 0.9067040085792542
+}

@@ -1,0 +1,9 @@
+# Superseded, incomplete latency-only run.
+/h200/
+
+# Temporary process files; completed measurements and metadata are retained.
+*/jobs/
+*/logs/
+*/run.pid
+*/run.log
+**/*.tmp

@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "pid": 9283,
+  "completed": 312,
+  "total": 312,
+  "elapsed_seconds": 2880.6351029872894,
+  "successful": 308,
+  "failed": 4
+}

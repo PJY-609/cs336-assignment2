@@ -1,0 +1,112 @@
+{
+  "implementation": "flash_pytorch",
+  "sequence_length": 65536,
+  "embedding_dim": 128,
+  "dtype": "float32",
+  "experiment": "main",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130",
+    "triton": "3.6.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "tuning": {
+    "selected": [
+      1024,
+      1024
+    ],
+    "sequence_length": 2048,
+    "trials": [
+      {
+        "tile": [
+          256,
+          256
+        ],
+        "validation": {
+          "sequence_length": 512,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            3.5762786865234375e-07,
+            1.5308894489862723e-06,
+            1.6689300537109375e-06,
+            1.1920928955078125e-06
+          ]
+        },
+        "ms": 37.0549430847168,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          512,
+          512
+        ],
+        "validation": {
+          "sequence_length": 1024,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            3.5762786865234375e-07,
+            1.5308894489862723e-06,
+            1.5944242477416992e-06,
+            1.9073486328125e-06
+          ]
+        },
+        "ms": 9.28105640411377,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          1024,
+          1024
+        ],
+        "validation": {
+          "sequence_length": 2048,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            3.5762786865234375e-07,
+            1.5308894489862723e-06,
+            1.9073486328125e-06,
+            9.5367431640625e-07
+          ]
+        },
+        "ms": 2.5510079860687256,
+        "status": "ok"
+      }
+    ]
+  },
+  "q_tile": 1024,
+  "k_tile": 1024,
+  "stage": "complete",
+  "validation": {
+    "sequence_length": 2048,
+    "atol": 0.001,
+    "rtol": 0.001,
+    "max_abs_errors": [
+      3.5762786865234375e-07,
+      1.5308894489862723e-06,
+      1.9073486328125e-06,
+      9.5367431640625e-07
+    ]
+  },
+  "status": "ok",
+  "wall_seconds": 40.089275227859616,
+  "forward_baseline_bytes": 201326592,
+  "forward_peak_bytes": 253526016,
+  "forward_peak_gb": 0.253526016,
+  "forward_incremental_gb": 0.052199424,
+  "forward_samples": 1,
+  "forward_ms": 517.3312377929688,
+  "backward_samples": 1,
+  "backward_ms": 1138.865966796875,
+  "forward_backward_baseline_bytes": 201326592,
+  "forward_backward_peak_bytes": 367017984,
+  "forward_backward_peak_gb": 0.367017984,
+  "forward_backward_incremental_gb": 0.165691392,
+  "forward_backward_samples": 1,
+  "forward_backward_ms": 1666.23046875
+}

@@ -1,0 +1,22 @@
+{
+  "implementation": "flash_triton",
+  "sequence_length": 16384,
+  "embedding_dim": 64,
+  "dtype": "float32",
+  "experiment": "tile_sensitivity",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130",
+    "triton": "3.6.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "q_tile": 128,
+  "k_tile": 128,
+  "stage": "validation",
+  "status": "resource_limit",
+  "wall_seconds": 3.7684580478817225,
+  "error": "OutOfResources: out of resource: shared memory, Required: 262144, Hardware limit: 232448. Reducing block sizes or `num_stages` may help."
+}

@@ -1,0 +1,46 @@
+{
+  "implementation": "flash_triton",
+  "sequence_length": 4096,
+  "embedding_dim": 64,
+  "dtype": "bfloat16",
+  "experiment": "tile_sensitivity",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.11.0+cu130",
+    "triton": "3.6.0",
+    "cuda": "13.0",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "q_tile": 64,
+  "k_tile": 32,
+  "stage": "complete",
+  "validation": {
+    "sequence_length": 128,
+    "atol": 0.05,
+    "rtol": 0.05,
+    "max_abs_errors": [
+      0.007484912872314453,
+      0.005755305290222168,
+      0.00534975528717041,
+      0.008948087692260742
+    ]
+  },
+  "status": "ok",
+  "wall_seconds": 4.799557127989829,
+  "forward_baseline_bytes": 69206016,
+  "forward_peak_bytes": 69746688,
+  "forward_peak_gb": 0.069746688,
+  "forward_incremental_gb": 0.000540672,
+  "forward_samples": 291,
+  "forward_ms": 0.069023996591568,
+  "backward_samples": 466,
+  "backward_ms": 0.1417279988527298,
+  "forward_backward_baseline_bytes": 69206016,
+  "forward_backward_peak_bytes": 72892416,
+  "forward_backward_peak_gb": 0.072892416,
+  "forward_backward_incremental_gb": 0.0036864,
+  "forward_backward_samples": 229,
+  "forward_backward_ms": 0.2051199972629547
+}
