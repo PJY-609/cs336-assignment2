@@ -1,5 +1,14 @@
 # H200 attention benchmark
 
+The archived run below used three implementations. The current runners also
+include `flash_pytorch_compiled`, compiling the same tiled PyTorch forward and
+manual backward with TorchInductor. See
+[the expanded experiment instructions](COMPILED_ATTENTION_EXPERIMENT.md) for the
+320-case main sweep, 120-case batch sweep, 120 tile cases, fresh output paths,
+compile-inclusive first-call reporting, and compatible-environment guidance.
+Those new measurements have not been run as part of this change. The historical
+commands and counts below describe the archived three-method experiment.
+
 The main sweep runs 240 cases on GPU 0: batch size 1, causal masking, sequence
 lengths 128 through 65536 in powers of two, dimensions 16/32/64/128, and BF16/FP32.
 The additional tile-sensitivity experiment runs 72 cases, for 312 total.

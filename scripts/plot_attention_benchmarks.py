@@ -16,8 +16,8 @@ def write_plots(directory, rows):
     directory = Path(directory)
     plot_dir = directory / 'plots'
     plot_dir.mkdir(exist_ok=True)
-    colors = {'naive': '#d95f02', 'flash_pytorch': '#7570b3', 'flash_triton': '#1b9e77'}
-    labels = {'naive': 'Dense PyTorch (compiled)', 'flash_pytorch': 'Tiled PyTorch', 'flash_triton': 'Triton FA2'}
+    colors = {'naive': '#d95f02', 'flash_pytorch': '#7570b3', 'flash_triton': '#1b9e77', 'flash_pytorch_compiled': '#0072b2'}
+    labels = {'naive': 'Dense PyTorch (compiled)', 'flash_pytorch': 'Tiled PyTorch', 'flash_triton': 'Triton FA2', 'flash_pytorch_compiled': 'Tiled PyTorch (compiled)'}
 
     def save(fig, name):
         for extension in ('png', 'pdf'):
@@ -31,42 +31,88 @@ def write_plots(directory, rows):
         dims = sorted({row['embedding_dim'] for row in main_rows})
         dtypes = sorted({row['dtype'] for row in main_rows})
         all_n = sorted({row['sequence_length'] for row in main_rows})
-        for phase, title in (('forward', 'Forward'), ('forward_backward', 'Forward + backward')):
-            field = phase + '_peak_gb'
-            fig, axes = plt.subplots(len(dtypes), len(dims), squeeze=False,
+        metrics = [('forward_ms', 'Forward latency', 'Latency (ms)', 'latency_forward'),
+                   ('backward_ms', 'Backward latency', 'Latency (ms)', 'latency_backward'),
+                   ('forward_backward_ms', 'Forward + backward latency', 'Latency (ms)', 'latency_forward_backward'),
+                   ('forward_peak_gb', 'Forward peak memory', 'Allocated memory (GB)', 'memory_forward'),
+                   ('forward_backward_peak_gb', 'Forward + backward peak memory', 'Allocated memory (GB)', 'memory_forward_backward')]
+        present = [impl for impl in colors if any(r['implementation'] == impl for r in main_rows)]
+        for field, title, unit, filename in metrics:
+            fig, axes = plt.subplots(len(dtypes), len(dims), squeeze=False, sharey=True,
                                      figsize=(4.2 * len(dims), 3.6 * len(dtypes)))
             for i, dtype in enumerate(dtypes):
                 for j, d in enumerate(dims):
                     ax = axes[i, j]
-                    for index, (impl, color) in enumerate(colors.items()):
-                        subset = sorted((row for row in main_rows if row['dtype'] == dtype
-                                         and row['embedding_dim'] == d and row['implementation'] == impl),
-                                        key=lambda row: row['sequence_length'])
-                        measured = [row for row in subset if field in row]
-                        ax.plot([row['sequence_length'] for row in measured],
-                                [row[field] for row in measured], 'o-', markersize=3,
-                                color=color, label=labels[impl])
-                        for row in subset:
-                            if row.get('status') == 'oom' and field not in row:
-                                # An OOM has no numeric memory measurement: annotate at
-                                # the top of the axes rather than inventing a y value.
-                                ax.text(row['sequence_length'], 0.98 - index * 0.11,
-                                        f'OOM\n{labels[impl]}', color=color, fontsize=6,
+                    for index, impl in enumerate(present):
+                        subset = {r['sequence_length']: r for r in main_rows
+                                  if r['dtype'] == dtype and r['embedding_dim'] == d
+                                  and r['implementation'] == impl}
+                        ax.plot(all_n, [subset.get(n, {}).get(field, np.nan) for n in all_n],
+                                marker=['o', 's', '^', 'D'][index], markersize=3,
+                                color=colors[impl], label=labels[impl])
+                        for n, row in subset.items():
+                            if row.get('status') in ('oom', 'resource_limit', 'error', 'timeout'):
+                                tag = {'oom': 'OOM', 'resource_limit': 'LIMIT', 'error': 'ERR', 'timeout': 'TIME'}[row['status']]
+                                if field in row:
+                                    tag += '*'
+                                ax.text(n, .98 - index * .10, tag, color=colors[impl], fontsize=6,
                                         ha='center', va='top', transform=ax.get_xaxis_transform())
                     ax.set_xscale('log', base=2)
                     ax.set_xticks(all_n, [f'{n // 1024}K' if n >= 1024 else str(n) for n in all_n], rotation=45)
-                    ax.set_ylim(bottom=0)
+                    ax.set_yscale('log')
                     ax.set_title(f'{dtype}, d={d}')
-                    ax.set_xlabel('Sequence length N')
-                    ax.set_ylabel('Peak allocated GPU memory (GB)')
+                    ax.set_xlabel('Sequence length (tokens)')
+                    if j == 0:
+                        ax.set_ylabel(unit)
                     ax.grid(alpha=0.25)
+            values = [r[field] for r in main_rows if r.get(field, 0) > 0 and np.isfinite(r[field])]
+            if values:
+                axes[0, 0].set_ylim(min(values) / 1.25, max(values) * 1.25)
             handles, legend_labels = axes[0, 0].get_legend_handles_labels()
-            fig.legend(handles, legend_labels, loc='lower center', ncol=3, fontsize=9)
-            fig.suptitle(f'{title}: single H200, batch=1, causal — allocated memory, including inputs')
-            fig.tight_layout(rect=(0, 0.07, 1, 0.94))
-            save(fig, 'memory_' + phase)
+            fig.legend(handles, legend_labels, loc='lower center', ncol=2 if len(present) > 3 else 3, fontsize=9)
+            fig.suptitle(f'{title}: H200, batch=1, causal — logarithmic y-axis')
+            fig.tight_layout(rect=(0, 0.09, 1, 0.94))
+            save(fig, filename)
 
-    tiles = [row for row in rows if row.get('experiment') == 'tile_sensitivity']
+    # Square-tile PyTorch comparison is separate from the rectangular Triton grid.
+    pytorch_tiles = [r for r in rows if r.get('experiment') == 'tile_sensitivity'
+                     and r['implementation'] in ('flash_pytorch', 'flash_pytorch_compiled')]
+    if pytorch_tiles:
+        lengths = sorted({r['sequence_length'] for r in pytorch_tiles})
+        dtypes = sorted({r['dtype'] for r in pytorch_tiles})
+        sizes = sorted({r['q_tile'] for r in pytorch_tiles})
+        for phase, title in (('forward', 'Forward'), ('backward', 'Backward'), ('forward_backward', 'Forward + backward')):
+            field = phase + '_ms'
+            fig, axes = plt.subplots(len(dtypes), len(lengths), squeeze=False, sharey=True,
+                                     figsize=(4.2 * len(lengths), 3.8 * len(dtypes)))
+            for i, dtype in enumerate(dtypes):
+                for j, n in enumerate(lengths):
+                    ax = axes[i, j]
+                    for index, impl in enumerate(('flash_pytorch', 'flash_pytorch_compiled')):
+                        subset = {r['q_tile']: r for r in pytorch_tiles
+                                  if r['dtype'] == dtype and r['sequence_length'] == n and r['implementation'] == impl}
+                        ax.plot(sizes, [subset.get(t, {}).get(field, np.nan) for t in sizes],
+                                marker=['s', 'D'][index], color=colors[impl], label=labels[impl])
+                        for t, row in subset.items():
+                            if row.get('status') in ('oom', 'resource_limit', 'error', 'timeout'):
+                                tag = {'oom': 'OOM', 'resource_limit': 'LIMIT', 'error': 'ERR', 'timeout': 'TIME'}[row['status']]
+                                ax.text(t, .98 - index * .1, tag + ('*' if field in row else ''),
+                                        color=colors[impl], ha='center', va='top', fontsize=7,
+                                        transform=ax.get_xaxis_transform())
+                    ax.set_xscale('log', base=2)
+                    ax.set_xticks(sizes, sizes)
+                    ax.set_yscale('log')
+                    ax.set_xlabel('Square tile size (tokens)')
+                    ax.set_ylabel('Latency (ms)')
+                    ax.set_title(f'{dtype}, N={n:,}, d=64')
+                    ax.grid(alpha=.25)
+            handles, legend_labels = axes[0, 0].get_legend_handles_labels()
+            fig.legend(handles, legend_labels, loc='lower center', ncol=2)
+            fig.suptitle(f'PyTorch {title.lower()}: fixed tile sensitivity; H200, batch=1, causal')
+            fig.tight_layout(rect=(0, .07, 1, .94))
+            save(fig, 'tile_sensitivity_pytorch_' + phase)
+
+    tiles = [row for row in rows if row.get('experiment') == 'tile_sensitivity' and row['implementation'] == 'flash_triton']
     if tiles:
         lengths = sorted({row['sequence_length'] for row in tiles})
         dtypes = sorted({row['dtype'] for row in tiles})

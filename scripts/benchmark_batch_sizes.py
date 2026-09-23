@@ -14,7 +14,7 @@ import subprocess
 import sys
 import time
 
-from benchmark_attention import ROOT, IMPLEMENTATIONS, save_json
+from benchmark_attention import ROOT, IMPLEMENTATIONS, PYTORCH_TILED, FIRST_CALL_FIELDS, save_json, stop_worker, tuning_implementation
 
 TERMINAL = {'ok', 'oom', 'resource_limit', 'error', 'timeout'}
 FIELDS = ('batch_size', 'sequence_length', 'embedding_dim', 'dtype', 'implementation',
@@ -23,7 +23,7 @@ FIELDS = ('batch_size', 'sequence_length', 'embedding_dim', 'dtype', 'implementa
           'forward_baseline_bytes', 'forward_backward_baseline_bytes',
           'forward_incremental_gb', 'forward_backward_incremental_gb',
           'forward_samples', 'backward_samples', 'forward_backward_samples',
-          'status', 'stage', 'wall_seconds', 'error')
+          'status', 'stage', 'wall_seconds', 'error') + FIRST_CALL_FIELDS
 
 
 def prepare(config):
@@ -48,13 +48,13 @@ def prepare(config):
                                                config['dimensions'], config['dtypes'], config['implementations']):
         tile = None
         if impl != 'naive':
-            name = f'{impl}_n{min(n, 2048)}_d{d}_{dtype}.json'
+            name = f'{tuning_implementation(impl)}_n{min(n, 2048)}_d{d}_{dtype}.json'
             if name not in tiles:
                 tiles[name] = json.loads((baseline / 'tuning' / name).read_text())
             tile = tiles[name]['selected']
             if len(tile) != 2 or any(type(t) is not int or t < 16 or t & (t - 1) for t in tile):
                 raise ValueError(f'Invalid baseline tile in {name}')
-            if impl == 'flash_pytorch' and tile[0] != tile[1]:
+            if impl in PYTORCH_TILED and tile[0] != tile[1]:
                 raise ValueError(f'PyTorch requires square tiles: {name}')
         jobs.append(dict(batch_size=b, sequence_length=n, embedding_dim=d, dtype=dtype,
                          implementation=impl, fixed_tile=tile, experiment='batch_sweep',
@@ -90,16 +90,14 @@ def run_case(directory, job, timeout, resume):
     timed_out = False
     with (directory / 'logs' / f'{key}.log').open('w') as log:
         process = subprocess.Popen([sys.executable, str(ROOT / 'scripts/benchmark_attention.py'), '--worker', str(job_path)],
-                                   cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
+                                   cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         try:
             process.wait(timeout=timeout or None)
         except subprocess.TimeoutExpired:
             timed_out = True
-            process.kill()
-            process.wait()
+            stop_worker(process)
         except BaseException:
-            process.kill()
-            process.wait()
+            stop_worker(process)
             raise
     row = {k: v for k, v in job.items() if k in FIELDS or k == 'experiment'}
     if job['fixed_tile'] is not None:

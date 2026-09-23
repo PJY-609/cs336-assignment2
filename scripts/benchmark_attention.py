@@ -4,9 +4,11 @@ from __future__ import annotations
 import argparse
 import csv
 import gc
+import hashlib
 import itertools
 import json
 import os
+import signal
 from pathlib import Path
 import statistics
 import subprocess
@@ -15,12 +17,15 @@ import time
 import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
-IMPLEMENTATIONS = ('naive', 'flash_pytorch', 'flash_triton')
+IMPLEMENTATIONS = ('naive', 'flash_pytorch', 'flash_pytorch_compiled', 'flash_triton')
+PYTORCH_TILED = ('flash_pytorch', 'flash_pytorch_compiled')
+FIRST_CALL_FIELDS = ('validation_seconds', 'forward_first_call_seconds',
+                     'backward_first_call_seconds', 'forward_backward_first_call_seconds')
 FIELDS = ('implementation', 'sequence_length', 'embedding_dim', 'dtype', 'q_tile', 'k_tile',
           'forward_ms', 'backward_ms', 'forward_backward_ms',
           'forward_peak_gb', 'forward_backward_peak_gb',
           'forward_incremental_gb', 'forward_backward_incremental_gb',
-          'experiment', 'status', 'wall_seconds', 'stage', 'error')
+          'experiment', 'status', 'wall_seconds', 'stage', 'error') + FIRST_CALL_FIELDS
 TABLE_FIELDS = FIELDS[:11] + ('status',)
 
 
@@ -41,6 +46,8 @@ def write_table(directory, rows, name, title):
     lines = [f'# {title}', '',
              'Batch size 1; causal masking; median CUDA-event latency in milliseconds.',
              'Naive = existing compiled dense PyTorch; Flash PyTorch = eager tiled Python loops.',
+             'flash_pytorch_compiled = the same tiled forward and backward with full-graph torch.compile.',
+             'First-call wall times (including compilation when needed) are reported separately in CSV/JSON.',
              'Tile tuning, correctness checks, input generation and compilation are outside timing.',
              'Peak memory is total PyTorch-allocated GPU memory in decimal GB, including preallocated inputs.',
              'Forward and forward+backward memory are measured in separate untimed passes.',
@@ -62,7 +69,33 @@ def write_tables(directory, rows):
     write_table(directory, [row for row in rows if row['experiment'] == 'main'],
                 'results', 'Attention benchmark on a single H200')
     write_table(directory, [row for row in rows if row['experiment'] == 'tile_sensitivity'],
-                'tile_sensitivity', 'Triton tile-size sensitivity on a single H200')
+                'tile_sensitivity', 'Tiled attention tile-size sensitivity on a single H200')
+
+
+def tuning_implementation(implementation):
+    """Share eager-selected tiles to isolate compilation from tile selection."""
+    return 'flash_pytorch' if implementation == 'flash_pytorch_compiled' else implementation
+
+
+def stop_worker(process):
+    """Stop the worker and any compiler subprocesses it spawned."""
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    process.wait()
+
+
+def build_cases(args):
+    cases = [(n, d, dtype, impl, None) for n, d, dtype, impl in
+             itertools.product(args.seq_lengths, args.dims, args.dtypes, args.implementations)]
+    if args.tile_sensitivity:
+        for impl in args.tile_implementations:
+            pairs = (itertools.product(args.tile_sizes, repeat=2) if impl == 'flash_triton'
+                     else ((t, t) for t in args.tile_pytorch_sizes))
+            cases.extend((n, 64, dtype, impl, tile) for n, dtype, tile in
+                         itertools.product(args.tile_seq_lengths, args.dtypes, list(pairs)))
+    return cases
 
 
 def worker(job_path):
@@ -71,7 +104,7 @@ def worker(job_path):
     import triton
     from triton.runtime.errors import OutOfResources
     from triton.testing import do_bench
-    from cs336_systems.flashattention import FlashAttention, FlashAttentionTriton, NaiveAttention
+    from cs336_systems.flashattention import CompiledFlashAttention, FlashAttention, FlashAttentionTriton, NaiveAttention
 
     job = json.loads(Path(job_path).read_text())
     result_path = Path(job['result_path'])
@@ -100,6 +133,12 @@ def worker(job_path):
         dtype = getattr(torch, job['dtype'])
         n, d = job['sequence_length'], job['embedding_dim']
         impl = job['implementation']
+        if impl not in IMPLEMENTATIONS:
+            raise ValueError(f'Unknown implementation: {impl}')
+        if impl == 'flash_pytorch_compiled':
+            row['compile_config'] = dict(backend='inductor', fullgraph=True, dynamic=False,
+                                         mode='default', forward=True, backward=True)
+            row['tile_policy'] = 'fixed tile or eager PyTorch-selected tile; no compiled retuning'
 
         def inputs(length):
             # Deterministic, identical inputs for every implementation of a given shape.
@@ -109,15 +148,29 @@ def worker(job_path):
             do = torch.randn(row['batch_size'], length, d, device='cuda', dtype=dtype, generator=generator)
             return qkv, do
 
-        def apply(qkv, tile):
-            if impl == 'naive':
+        def apply(qkv, tile, implementation=None):
+            selected = implementation or impl
+            if selected == 'naive':
                 return NaiveAttention.apply(*qkv, True)
-            if impl == 'flash_pytorch':
+            if selected == 'flash_pytorch':
                 return FlashAttention.apply(*qkv, True, tile[0])
+            if selected == 'flash_pytorch_compiled':
+                return CompiledFlashAttention.apply(*qkv, True, tile[0])
             return FlashAttentionTriton.apply(*qkv, True, *tile)
 
-        def end_to_end(qkv, do, tile):
-            return torch.autograd.grad(apply(qkv, tile), qkv, do)
+        def end_to_end(qkv, do, tile, implementation=None):
+            return torch.autograd.grad(apply(qkv, tile, implementation), qkv, do)
+
+        def first_call(fn, label):
+            # Wall time includes tracing/code generation, execution, and sync;
+            # it is not a claim of pure compiler time or a cold cache.
+            torch.cuda.synchronize()
+            checkpoint('warming_up', stage=label)
+            start = time.monotonic()
+            result = fn()
+            torch.cuda.synchronize()
+            row[label + '_seconds'] = time.monotonic() - start
+            return result
 
         def measure(fn, label):
             samples = do_bench(fn, warmup=job['warmup_ms'], rep=job['rep_ms'], return_mode='all')
@@ -141,7 +194,7 @@ def worker(job_path):
             row[label + '_incremental_gb'] = (peak - baseline) / 1e9
             del result
 
-        def validate(tile):
+        def validate(tile, implementation=None):
             # Exercise multiple tiles even when the tuned PyTorch tile is large.
             length = min(n, max(128, 2 * max(tile or (64,))))
             qkv, do = inputs(length)
@@ -151,7 +204,7 @@ def worker(job_path):
             mask = torch.ones(length, length, device='cuda', dtype=torch.bool).triu(1)
             reference = scores.masked_fill(mask, float('-inf')).softmax(-1) @ v
             reference_grads = torch.autograd.grad(reference, reference_inputs, do.float())
-            actual = apply(qkv, tile)
+            actual = apply(qkv, tile, implementation)
             actual_grads = torch.autograd.grad(actual, qkv, do)
             tolerance = 0.05 if dtype == torch.bfloat16 else 0.001
             for value, expected in zip((actual, *actual_grads), (reference, *reference_grads)):
@@ -170,22 +223,23 @@ def worker(job_path):
             # For longer inputs reuse the 2048-token choice; this is a bounded search,
             # not a claim of optimal tiles for every long sequence.
             tune_n = min(n, 2048)
+            checkpoint('tuning', stage='tile_selection')
             cache_path = Path(job['tuning_path'])
             if cache_path.exists():
                 tuning = json.loads(cache_path.read_text())
                 tile = tuple(tuning['selected'])
             else:
                 candidates = ([(min(tune_n, t),) * 2 for t in (256, 512, 1024)]
-                              if impl == 'flash_pytorch' else [(16, 16), (32, 32), (64, 32), (64, 64)])
+                              if impl in PYTORCH_TILED else [(16, 16), (32, 32), (64, 32), (64, 64)])
                 candidates = list(dict.fromkeys(candidates))
                 trials = []
                 qkv_tune, do_tune = inputs(tune_n)
                 for candidate in candidates:
                     trial = dict(tile=candidate)
                     try:
-                        trial['validation'] = validate(candidate)
+                        trial['validation'] = validate(candidate, tuning_implementation(impl))
                         def fn():
-                            return end_to_end(qkv_tune, do_tune, candidate)
+                            return end_to_end(qkv_tune, do_tune, candidate, tuning_implementation(impl))
                         fn()  # Compilation is excluded from timing.
                         torch.cuda.synchronize()
                         trial['ms'] = do_bench(fn, warmup=5, rep=15, return_mode='median')
@@ -204,8 +258,7 @@ def worker(job_path):
                 del qkv_tune, do_tune
             row['tuning'] = tuning
             row.update(q_tile=tile[0], k_tile=tile[1])
-        row['stage'] = 'validation'
-        row['validation'] = validate(tile)
+        row['validation'] = first_call(lambda: validate(tile), 'validation')
         if job.get('validation_only'):
             row['stage'] = 'complete'
             checkpoint('ok')
@@ -215,9 +268,7 @@ def worker(job_path):
         checkpoint('warming_up')
         # Use autograd.grad so no leaf .grad accumulation or gradient clearing is timed.
         # Each timing stage warms its own compiled operations before do_bench.
-        row['stage'] = 'forward_warmup'
-        output = apply(qkv, tile)
-        torch.cuda.synchronize()
+        output = first_call(lambda: apply(qkv, tile), 'forward_first_call')
         assert torch.isfinite(output).all().item(), 'Nonfinite forward output'
         output = None
         row['stage'] = 'forward_memory'
@@ -227,9 +278,7 @@ def worker(job_path):
         output = apply(qkv, tile)
         row['forward_ms'] = measure(lambda: apply(qkv, tile), 'forward')
         checkpoint('forward_done')
-        row['stage'] = 'backward_warmup'
-        gradients = torch.autograd.grad(output, qkv, do, retain_graph=True)
-        torch.cuda.synchronize()
+        gradients = first_call(lambda: torch.autograd.grad(output, qkv, do, retain_graph=True), 'backward_first_call')
         assert all(torch.isfinite(g).all().item() for g in gradients), 'Nonfinite gradients'
         del gradients
         row['stage'] = 'backward_timing'
@@ -238,9 +287,7 @@ def worker(job_path):
         output = None  # Avoid retaining an extra graph during end-to-end timing.
         def fn():
             return end_to_end(qkv, do, tile)
-        row['stage'] = 'forward_backward_warmup'
-        fn()
-        torch.cuda.synchronize()
+        first_call(fn, 'forward_backward_first_call')
         row['stage'] = 'forward_backward_memory'
         measure_memory(fn, 'forward_backward')
         checkpoint('forward_backward_memory_done')
@@ -260,60 +307,68 @@ def worker(job_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT / 'benchmark_results' / 'h200_memory_tiles')
+    parser.add_argument('--output', type=Path, default=ROOT / 'benchmark_results' / 'h200_compile_comparison')
     parser.add_argument('--seq-lengths', type=int, nargs='+', default=[2**i for i in range(7, 17)])
     parser.add_argument('--dims', type=int, nargs='+', default=[16, 32, 64, 128])
     parser.add_argument('--dtypes', nargs='+', choices=['bfloat16', 'float32'], default=['bfloat16', 'float32'])
     parser.add_argument('--implementations', nargs='+', choices=IMPLEMENTATIONS, default=list(IMPLEMENTATIONS))
     parser.add_argument('--warmup-ms', type=float, default=25)
     parser.add_argument('--rep-ms', type=float, default=100)
-    parser.add_argument('--timeout-seconds', type=float, default=0, help='Per-case limit; 0 means no limit.')
+    parser.add_argument('--timeout-seconds', type=float, default=600, help='Per-case limit including compilation; 0 means no limit.')
     parser.add_argument('--seed', type=int, default=0)
-    parser.add_argument('--tile-sensitivity', action='store_true', help='Also run a fixed-tile Triton experiment at D=64.')
+    parser.add_argument('--tile-sensitivity', action='store_true', help='Also compare fixed tiles for eager/compiled PyTorch and Triton at D=64.')
     parser.add_argument('--tile-seq-lengths', type=int, nargs='+', default=[1024, 4096, 16384, 65536])
     parser.add_argument('--tile-sizes', type=int, nargs='+', default=[32, 64, 128])
+    parser.add_argument('--tile-pytorch-sizes', type=int, nargs='+', default=[256, 512, 1024])
+    parser.add_argument('--tile-implementations', nargs='+', choices=(*PYTORCH_TILED, 'flash_triton'),
+                        default=[*PYTORCH_TILED, 'flash_triton'])
+    parser.add_argument('--dry-run', action='store_true', help='Print the complete case grid without imports, GPU work, or writes.')
     parser.add_argument('--resume', action='store_true', help='Reuse completed cases and tile tuning in this output directory.')
     parser.add_argument('--worker', type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.worker:
         worker(args.worker)
         return
-    if any(n < 16 or n & (n - 1) for n in args.seq_lengths + args.dims + args.tile_seq_lengths + args.tile_sizes):
+    if any(n < 16 or n & (n - 1) for n in args.seq_lengths + args.dims + args.tile_seq_lengths + args.tile_sizes + args.tile_pytorch_sizes):
         parser.error('Sequence lengths and embedding dimensions must be powers of two >= 16.')
     if args.rep_ms <= 0 or args.warmup_ms < 0 or args.timeout_seconds < 0:
         parser.error('Timing budgets must be positive (warmup and timeout may be zero).')
     directory = args.output.resolve()
+    cases = build_cases(args)
+    if args.dry_run:
+        print(json.dumps(dict(output=str(directory), total_cases=len(cases), cases=cases), indent=2))
+        return
     if (directory / 'manifest.json').exists() and not args.resume:
         parser.error('Output already contains a run; use --resume or choose a new --output.')
     for subdir in ('cases', 'logs', 'jobs', 'tuning'):
         (directory / subdir).mkdir(parents=True, exist_ok=True)
-    cases = [(n, d, dtype, impl, None) for n, d, dtype, impl in
-             itertools.product(args.seq_lengths, args.dims, args.dtypes, args.implementations)]
-    if args.tile_sensitivity:
-        cases += [(n, 64, dtype, 'flash_triton', (bm, bn)) for n, dtype, bm, bn in
-                  itertools.product(args.tile_seq_lengths, args.dtypes, args.tile_sizes, args.tile_sizes)]
-    config = dict(benchmark_version=2, sequence_lengths=args.seq_lengths, dimensions=args.dims, dtypes=args.dtypes,
+    config = dict(benchmark_version=3, sequence_lengths=args.seq_lengths, dimensions=args.dims, dtypes=args.dtypes,
                   implementations=args.implementations, warmup_ms=args.warmup_ms, rep_ms=args.rep_ms,
                   timeout_seconds=args.timeout_seconds, seed=args.seed, batch_size=1, causal=True,
                   tile_sensitivity=args.tile_sensitivity, tile_sequence_lengths=args.tile_seq_lengths,
-                  tile_sizes=args.tile_sizes, memory_units='decimal GB, allocated (not reserved)')
+                  tile_sizes=args.tile_sizes, tile_pytorch_sizes=args.tile_pytorch_sizes,
+                  tile_implementations=args.tile_implementations,
+                  memory_units='decimal GB, allocated (not reserved)')
+    sources = (Path(__file__), ROOT / 'scripts' / 'plot_attention_benchmarks.py',
+               ROOT / 'cs336_systems' / 'flashattention.py', ROOT / 'uv.lock', ROOT / 'benchmark.env')
+    fingerprint = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}
     if args.resume and (directory / 'manifest.json').exists():
         previous = json.loads((directory / 'manifest.json').read_text())
-        if previous['config'] != config:
-            parser.error('Resume configuration differs from the recorded run.')
+        if previous['config'] != config or previous.get('source_sha256') != fingerprint:
+            parser.error('Resume requires identical configuration and source files.')
     started = time.time()
     revision = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     gpu = subprocess.run(['nvidia-smi'], capture_output=True, text=True).stdout
     save_json(directory / 'manifest.json', dict(config=config, pid=os.getpid(), started_at=started,
                                                git_revision=revision, gpu_info=gpu,
-                                               command=sys.argv, total_cases=len(cases)))
+                                               command=sys.argv, total_cases=len(cases), source_sha256=fingerprint))
     # Preserve the exact benchmark and implementation used for reproducibility.
     import shutil
-    for source in (Path(__file__), ROOT / 'scripts' / 'plot_attention_benchmarks.py',
-                   ROOT / 'cs336_systems' / 'flashattention.py', ROOT / 'uv.lock', ROOT / 'benchmark.env'):
+    for source in sources:
         shutil.copy2(source, directory / source.name)
     env = os.environ.copy()
     env.update(CUDA_VISIBLE_DEVICES='0', OMP_NUM_THREADS='1', MKL_NUM_THREADS='1', PYTHONUNBUFFERED='1')
+    env['PYTHONPATH'] = str(ROOT) + os.pathsep + env.get('PYTHONPATH', '')
     from plot_attention_benchmarks import write_plots
     rows = []
     write_tables(directory, rows)
@@ -327,10 +382,11 @@ def main():
             rows.append(json.loads(result.read_text()))
             write_tables(directory, rows)
             continue
+        result.unlink(missing_ok=True)
         job = dict(implementation=impl, sequence_length=n, embedding_dim=d, dtype=dtype, seed=args.seed,
                    experiment=experiment, fixed_tile=fixed_tile,
                    warmup_ms=args.warmup_ms, rep_ms=args.rep_ms, result_path=str(result),
-                   tuning_path=str(directory / 'tuning' / f'{impl}_n{min(n, 2048)}_d{d}_{dtype}.json'))
+                   tuning_path=str(directory / 'tuning' / f'{tuning_implementation(impl)}_n{min(n, 2048)}_d{d}_{dtype}.json'))
         job_path = directory / 'jobs' / f'{key}.json'
         save_json(job_path, job)
         save_json(directory / 'progress.json', dict(status='running', pid=os.getpid(), current_case=key,
@@ -339,14 +395,16 @@ def main():
         case_start = time.monotonic()
         with (directory / 'logs' / f'{key}.log').open('w') as log:
             process = subprocess.Popen([sys.executable, str(Path(__file__).resolve()), '--worker', str(job_path)],
-                                       cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
+                                       cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
             try:
                 process.wait(timeout=args.timeout_seconds or None)
                 timed_out = False
             except subprocess.TimeoutExpired:
-                process.kill()
-                process.wait()
+                stop_worker(process)
                 timed_out = True
+            except BaseException:
+                stop_worker(process)
+                raise
         row = json.loads(result.read_text()) if result.exists() else {key: job[key] for key in FIELDS[:4]}
         row['experiment'] = experiment
         if fixed_tile is not None:

@@ -1,5 +1,11 @@
 # Representative batch-size sweep
 
+The original three-method sweep below has been completed and archived. The
+current configuration expands it to **120 cases** by adding compiled tiled
+PyTorch, with identical eager-selected tiles and all baselines rerun. See
+[the compiled comparison runbook](COMPILED_ATTENTION_EXPERIMENT.md) for the new
+output directory, timeout policy, measurements, and execution commands.
+
 ## Purpose
 
 Extend the completed H200 attention benchmark with a focused experiment on how
@@ -122,8 +128,8 @@ the actual software environment, and timing-sample limitations.
 
 ## Prepared configuration and runner
 
-The initial grid is configured in `configs/batch_size_sweep.json`. Paths in the
-config are relative to the repository root. The runner reruns all 90 cases,
+The expanded grid is configured in `configs/batch_size_sweep.json`. Paths in the
+config are relative to the repository root. The runner now reruns all 120 cases,
 including batch size 1, and loads fixed tiles from the original run's `tuning/`
 records. It never retunes them. Original results remain in their own directory.
 
@@ -133,15 +139,14 @@ Inspect the resolved grid without GPU work or output files:
 python scripts/benchmark_batch_sizes.py --dry-run
 ```
 
-Run the experiment on GPU 0 of an H200 machine with the locked dependencies:
+Run the experiment on GPU 0 of an H200 machine with a validated CUDA environment:
 
 The locked PyTorch build requires a compatible CUDA driver. On this server it
 failed preflight; the completed run used system PyTorch 2.8.0+cu128 instead.
 Consult the archived run README before reproducing its measurements.
 
 ```sh
-source benchmark.env
-uv run --locked python scripts/benchmark_batch_sizes.py
+python scripts/benchmark_batch_sizes.py
 ```
 
 The runner first checks outputs and all three input gradients at batch size 2
@@ -166,5 +171,5 @@ Six figures are refreshed every 24 cases and at completion, as PNG and PDF in
 marks retained measurements from cases that failed at a later stage. Regenerate:
 
 ```sh
-uv run --locked python scripts/plot_batch_sizes.py benchmark_results/h200_batch_sweep
+python scripts/plot_batch_sizes.py benchmark_results/h200_batch_compile_comparison
 ```

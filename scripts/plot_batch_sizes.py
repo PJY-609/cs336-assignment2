@@ -17,6 +17,7 @@ def write_plots(directory, rows, config):
     output.mkdir(exist_ok=True)
     styles = {'naive': ('#d95f02', 'o', 'Dense PyTorch (compiled)'),
               'flash_pytorch': ('#7570b3', 's', 'Tiled PyTorch'),
+              'flash_pytorch_compiled': ('#0072b2', 'D', 'Tiled PyTorch (compiled)'),
               'flash_triton': ('#1b9e77', '^', 'Triton FA2')}
     metrics = [('forward_ms', 'Forward latency (ms)'), ('backward_ms', 'Backward latency (ms)'),
                ('forward_backward_ms', 'Forward + backward latency (ms)'),
@@ -46,18 +47,28 @@ def write_plots(directory, rows, config):
                                     ha='center', va='top', transform=ax.get_xaxis_transform())
                 ax.set_xscale('log', base=2)
                 ax.set_xticks(batches, [str(b) for b in batches])
-                if field.endswith('_ms') and any(r.get(field, 0) > 0 for r in rows):
-                    ax.set_yscale('log')
-                else:
-                    ax.set_ylim(bottom=0)
                 ax.set_title(f'{dtype}, N={length:,}, d={config["dimensions"][0]}')
                 ax.set_xlabel('Batch size')
                 if j == 0:
-                    ax.set_ylabel(title)
+                    ax.set_ylabel('Latency (ms)' if field.endswith('_ms') else
+                                  'Throughput (tokens/s)' if field == 'tokens_per_second' else
+                                  'Peak allocated memory (GB)')
                 ax.grid(alpha=.25)
+        # Set shared limits only after every panel has added its observations.
+        # Setting a limit inside the loop disables autoscaling before later
+        # panels contribute, clipping their throughput and memory curves.
+        values = [r[field] for r in rows if r.get(field, 0) > 0
+                  and np.isfinite(r[field])]
+        if values:
+            for ax in axes.flat:
+                ax.set_yscale('log')
+            axes[0, 0].set_ylim(min(values) / 1.25, max(values) * 1.25)
         handles, labels = axes[0, 0].get_legend_handles_labels()
-        fig.legend(handles, labels, loc='lower center', ncol=3)
-        fig.suptitle(f'{title} — H200, causal, fixed baseline tiles\n* Measurement retained from a case that failed at a later stage')
+        fig.legend(handles, labels, loc='lower center', ncol=2 if len(handles) > 3 else 3)
+        subtitle = f'Dimension {config["dimensions"][0]}; logarithmic y-axis; fixed tiles across batch sizes'
+        if any(r.get('status') in ('oom', 'resource_limit', 'error', 'timeout') for r in rows):
+            subtitle += '\n* Measurement retained from a case that failed at a later stage'
+        fig.suptitle(f'{title} — H200, causal\n{subtitle}')
         fig.tight_layout(rect=(0, .07, 1, .92))
         for extension in ('png', 'pdf'):
             temporary = output / f'{field}.tmp.{extension}'

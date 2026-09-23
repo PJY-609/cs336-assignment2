@@ -17,8 +17,8 @@ class BatchSweepTests(unittest.TestCase):
         self.jobs, self.tiles = sweep.prepare(self.config)
 
     def test_grid_and_fixed_baseline_tiles(self):
-        self.assertEqual(len(self.jobs), 90)
-        self.assertEqual(len({sweep.case_key(j) for j in self.jobs}), 90)
+        self.assertEqual(len(self.jobs), 120)
+        self.assertEqual(len({sweep.case_key(j) for j in self.jobs}), 120)
         groups = {}
         for job in self.jobs:
             if job['implementation'] == 'naive':
@@ -27,7 +27,12 @@ class BatchSweepTests(unittest.TestCase):
             key = (job['implementation'], min(job['sequence_length'], 2048), job['dtype'])
             groups.setdefault(key, set()).add(tuple(job['fixed_tile']))
         self.assertTrue(all(len(choices) == 1 for choices in groups.values()))
-        self.assertEqual(len(groups), 8)
+        self.assertEqual(len(groups), 12)
+        for job in self.jobs:
+            if job['implementation'] == 'flash_pytorch_compiled':
+                eager = next(j for j in self.jobs if j['implementation'] == 'flash_pytorch'
+                             and all(j[k] == job[k] for k in ('batch_size', 'sequence_length', 'embedding_dim', 'dtype')))
+                self.assertEqual(job['fixed_tile'], eager['fixed_tile'])
 
     def test_invalid_grid_and_missing_tiles_fail_before_launch(self):
         config = copy.deepcopy(self.config)
@@ -72,6 +77,21 @@ class BatchSweepTests(unittest.TestCase):
                 saved = next(csv.DictReader(handle))
             self.assertEqual(saved['forward_ms'], '1.2')
             self.assertEqual(saved['tokens_per_second'], '')
+
+    def test_timeout_stops_compiler_process_group(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            for subdir in ('cases', 'jobs', 'logs'):
+                (directory / subdir).mkdir()
+            job = next(j for j in self.jobs if j['implementation'] == 'flash_pytorch_compiled')
+            with patch.object(sweep.subprocess, 'Popen') as popen, patch.object(sweep, 'stop_worker') as stop:
+                popen.return_value.wait.side_effect = sweep.subprocess.TimeoutExpired('worker', 600)
+                row = sweep.run_case(directory, job, 600, False)
+                stop.assert_called_once_with(popen.return_value)
+                self.assertTrue(popen.call_args.kwargs['start_new_session'])
+            self.assertEqual(row['status'], 'timeout')
+            self.assertEqual(row['implementation'], 'flash_pytorch_compiled')
+            self.assertNotIn('forward_ms', row)
 
 
 if __name__ == '__main__':

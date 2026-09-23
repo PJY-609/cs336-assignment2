@@ -116,61 +116,101 @@ def tiled_pytorch_backward(Q, K, V, O, dO, L, is_causal, tile_size=16):
     return dQ, dK, dV
 
 
+def tiled_pytorch_forward(Q, K, V, is_causal=False, tile_size=16):
+    """Online-softmax tiled forward shared by eager and compiled variants."""
+    d = Q.shape[-1]
+
+    Q_tiles = split_into_tiles(Q, tile_size)
+    K_tiles = split_into_tiles(K, tile_size)
+    V_tiles = split_into_tiles(V, tile_size)
+
+    O = torch.empty_like(Q)
+    L = Q.new_empty(Q.shape[:-1])
+
+    for i, Q_i in enumerate(Q_tiles):
+        O_i = torch.zeros_like(Q_i)
+        l = Q_i.new_zeros(Q_i.shape[:-1])
+        m_prev = Q_i.new_full(Q_i.shape[:-1], float("-inf"))
+
+        q_indexes = torch.arange(i * tile_size, i * tile_size + Q_i.shape[-2], device=Q.device)
+
+        for j, (K_j, V_j) in enumerate(zip(K_tiles, V_tiles)):
+            S = (Q_i @ K_j.transpose(-2, -1)) / (d ** 0.5)
+
+            k_indexes = torch.arange(j * tile_size, j * tile_size + K_j.shape[-2], device=K.device)
+
+            if is_causal:
+                # valid = S.new_ones(S.shape)
+                valid = (q_indexes[:, None] >= k_indexes[None, :])
+                S = torch.where(valid, S, float("-inf"))
+
+            m = torch.maximum(m_prev, S.max(dim=-1).values)
+            P = torch.exp(S - m.unsqueeze(-1))
+
+            # Rescale earlier contributions to the new running maximum.
+            alpha = torch.exp(m_prev - m)
+            l = alpha * l + P.sum(dim=-1)
+            O_i = alpha.unsqueeze(-1) * O_i + P @ V_j
+            m_prev = m
+
+        start = i * tile_size
+        end = start + Q_i.shape[-2]
+        O[..., start:end, :] = O_i / l.unsqueeze(-1)
+        L[..., start:end] = m_prev + torch.log(l)
+
+    return O, L
+
+
 class FlashAttention(torch.autograd.Function):
     @staticmethod
     def forward(ctx, Q, K, V, is_causal=False, tile_size=16):
         if not isinstance(tile_size, int) or tile_size < 1:
             raise ValueError("tile_size must be a positive integer.")
         ctx.tile_size = tile_size
-        d = Q.shape[-1]
+        output, L = tiled_pytorch_forward(Q, K, V, is_causal, tile_size)
 
-        Q_tiles = split_into_tiles(Q, tile_size)
-        K_tiles = split_into_tiles(K, tile_size)
-        V_tiles = split_into_tiles(V, tile_size)
-
-        O = torch.empty_like(Q)
-        L = Q.new_empty(Q.shape[:-1])
-
-        for i, Q_i in enumerate(Q_tiles):
-            O_i = torch.zeros_like(Q_i)
-            l = Q_i.new_zeros(Q_i.shape[:-1])
-            m_prev = Q_i.new_full(Q_i.shape[:-1], float("-inf"))
-
-            q_indexes = torch.arange(i * tile_size, i * tile_size + Q_i.shape[-2], device=Q.device)
-
-            for j, (K_j, V_j) in enumerate(zip(K_tiles, V_tiles)):
-                S = (Q_i @ K_j.transpose(-2, -1)) / (d ** 0.5)
-
-                k_indexes = torch.arange(j * tile_size, j * tile_size + K_j.shape[-2], device=K.device)
-
-                if is_causal:
-                    # valid = S.new_ones(S.shape)
-                    valid = (q_indexes[:, None] >= k_indexes[None, :])
-                    S = torch.where(valid, S, float("-inf"))
-
-                m = torch.maximum(m_prev, S.max(dim=-1).values)
-                P = torch.exp(S - m.unsqueeze(-1))
-
-                # Rescale earlier contributions to the new running maximum.
-                alpha = torch.exp(m_prev - m)
-                l = alpha * l + P.sum(dim=-1)
-                O_i = alpha.unsqueeze(-1) * O_i + P @ V_j
-                m_prev = m
-
-            start = i * tile_size
-            end = start + Q_i.shape[-2]
-            O[..., start:end, :] = O_i / l.unsqueeze(-1)
-            L[..., start:end] = m_prev + torch.log(l)
-
-        ctx.save_for_backward(L, Q, K, V, O)
+        ctx.save_for_backward(L, Q, K, V, output)
         ctx.is_causal = is_causal
-        return O
+        return output
 
     @staticmethod
     def backward(ctx, dO):
         L, Q, K, V, O = ctx.saved_tensors
         dQ, dK, dV = tiled_pytorch_backward(Q, K, V, O, dO, L, ctx.is_causal, ctx.tile_size)
         return (dQ, dK, dV, None, None)[:len(ctx.needs_input_grad)]
+
+# Compile the complete tiled loops, including the manually derived backward.
+# Full-graph capture makes unsupported operations fail instead of running eager
+# fragments under a compiled label. Shapes and tile sizes specialize per case.
+compiled_tiled_pytorch_forward = torch.compile(
+    tiled_pytorch_forward, fullgraph=True, dynamic=False, backend="inductor",
+)
+compiled_tiled_pytorch_backward = torch.compile(
+    tiled_pytorch_backward, fullgraph=True, dynamic=False, backend="inductor",
+)
+
+
+class CompiledFlashAttention(torch.autograd.Function):
+    """The same tiled algorithm as FlashAttention, compiled in both directions."""
+
+    @staticmethod
+    def forward(ctx, Q, K, V, is_causal=False, tile_size=16):
+        if not isinstance(tile_size, int) or tile_size < 1:
+            raise ValueError("tile_size must be a positive integer.")
+        output, L = compiled_tiled_pytorch_forward(Q, K, V, is_causal, tile_size)
+        ctx.save_for_backward(L, Q, K, V, output)
+        ctx.is_causal = is_causal
+        ctx.tile_size = tile_size
+        return output
+
+    @staticmethod
+    def backward(ctx, dO):
+        L, Q, K, V, output = ctx.saved_tensors
+        dQ, dK, dV = compiled_tiled_pytorch_backward(
+            Q, K, V, output, dO, L, ctx.is_causal, ctx.tile_size,
+        )
+        return (dQ, dK, dV, None, None)[:len(ctx.needs_input_grad)]
+
 
 # Keep the PyTorch implementation importable on systems without Triton.
 if triton is not None:
