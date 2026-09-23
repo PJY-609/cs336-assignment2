@@ -116,5 +116,55 @@ batch-size-1 results were reused or rerun and identify any environment differenc
 Decide on a dimension-128 extension or a separate retuned sweep only after reviewing
 the initial results.
 
-This document is an execution plan; it does not indicate that the batch-size
-sweep has been run.
+The sweep subsequently completed all 90 cases successfully. See
+[the archived run](benchmark_results/h200_batch_sweep/README.md) for results,
+the actual software environment, and timing-sample limitations.
+
+## Prepared configuration and runner
+
+The initial grid is configured in `configs/batch_size_sweep.json`. Paths in the
+config are relative to the repository root. The runner reruns all 90 cases,
+including batch size 1, and loads fixed tiles from the original run's `tuning/`
+records. It never retunes them. Original results remain in their own directory.
+
+Inspect the resolved grid without GPU work or output files:
+
+```sh
+python scripts/benchmark_batch_sizes.py --dry-run
+```
+
+Run the experiment on GPU 0 of an H200 machine with the locked dependencies:
+
+The locked PyTorch build requires a compatible CUDA driver. On this server it
+failed preflight; the completed run used system PyTorch 2.8.0+cu128 instead.
+Consult the archived run README before reproducing its measurements.
+
+```sh
+source benchmark.env
+uv run --locked python scripts/benchmark_batch_sizes.py
+```
+
+The runner first checks outputs and all three input gradients at batch size 2
+for every distinct tile regime against the dense reference. A failed smoke check
+stops the sweep. Every timed case additionally validates at its actual batch size
+on a smaller sequence and retains the existing full-size finiteness checks.
+Use `--smoke-only` to run just preflight validation, then the same command with
+`--resume` to proceed. Resume requires unchanged config, source hashes, and tiles;
+it preserves terminal outcomes, including failures. Use a fresh `--output` to retry.
+
+The separate output directory contains raw `cases/`, worker `logs/`, resolved
+`jobs/`, baseline `tuning/`, `smoke/` records, source snapshots, both manifests,
+`config.json`, `progress.json`, `run.pid`, `results.csv`, and `results.md`.
+`review.json` flags failures, missing validation, and timing stages with fewer
+than `minimum_samples` (default 5). It does not automatically alter the timing
+budget. Increase `rep_ms` in a copied config and use a new output directory if
+those measurements need more samples. Each worker records its software/GPU
+environment; compare this and `baseline_manifest.json` when reporting differences.
+
+Six figures are refreshed every 24 cases and at completion, as PNG and PDF in
+`plots/`. Missing measurements create gaps; failures are annotated, and a star
+marks retained measurements from cases that failed at a later stage. Regenerate:
+
+```sh
+uv run --locked python scripts/plot_batch_sizes.py benchmark_results/h200_batch_sweep
+```

@@ -7,3 +7,6 @@
 */run.pid
 */run.log
 **/*.tmp
+# Transient process bookkeeping; manifests retain historical launch metadata.
+**/.run.lock
+**/launcher.pid

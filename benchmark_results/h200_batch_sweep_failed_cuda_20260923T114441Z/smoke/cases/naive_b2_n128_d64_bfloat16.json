@@ -1,0 +1,11 @@
+{
+  "batch_size": 2,
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "bfloat16",
+  "implementation": "naive",
+  "experiment": "batch_sweep",
+  "status": "error",
+  "wall_seconds": 8.106637369841337,
+  "error": "RuntimeError: The NVIDIA driver on your system is too old (found version 12080). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver."
+}

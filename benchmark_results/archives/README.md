@@ -20,3 +20,15 @@ job JSON files are historical provenance, not portable execution paths.
 `../artifact_inventory.json` records SHA-256 hashes and byte counts for the
 preserved result artifacts, documentation, scripts, and dependency configuration.
 It excludes itself and the intentionally uncommitted `AGENTS.md` deletion.
+
+The completed 90-case batch-size sweep is directly readable in
+`../h200_batch_sweep/`. Its additional retirement archives are:
+
+- `batch_sweep_diagnostics.tar.gz`: exact full-run jobs, worker/console logs,
+  smoke logs, and the failed locked-environment CUDA launch.
+- `batch_sweep_validation_runs.tar.gz`: the original `/tmp` multi-batch smoke
+  checks, three-case timing/memory/plot run, its config, and the dry-run grid.
+
+These archives were verified against their source files before committing.
+See the batch sweep README for the actual successful software environment and
+the low-sample-count limitations retained in the review report.

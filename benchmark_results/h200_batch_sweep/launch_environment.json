@@ -1,0 +1,6 @@
+{
+  "python": "/usr/local/bin/python",
+  "pythonpath": "/tmp/cs336-batch-plot-deps:",
+  "reason": "Locked PyTorch build incompatible with installed driver; use GPU-validated system PyTorch 2.8.0+cu128 and Triton 3.4.0.",
+  "previous_attempt": "/root/cs336-assignment2/benchmark_results/h200_batch_sweep_failed_cuda_20260923T114441Z"
+}

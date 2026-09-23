@@ -1,0 +1,17 @@
+{
+  "batch_size": 2,
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "bfloat16",
+  "implementation": "flash_pytorch",
+  "fixed_tile": [
+    128,
+    128
+  ],
+  "experiment": "batch_sweep",
+  "seed": 0,
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "validation_only": true,
+  "result_path": "/root/cs336-assignment2/benchmark_results/h200_batch_sweep/smoke/cases/flash_pytorch_b2_n128_d64_bfloat16_bm128_bn128.json"
+}

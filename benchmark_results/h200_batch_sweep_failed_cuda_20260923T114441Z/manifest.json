@@ -1,0 +1,584 @@
+{
+  "identity": {
+    "config": {
+      "batch_sizes": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "sequence_lengths": [
+        128,
+        2048,
+        16384
+      ],
+      "dimensions": [
+        64
+      ],
+      "dtypes": [
+        "bfloat16",
+        "float32"
+      ],
+      "implementations": [
+        "naive",
+        "flash_pytorch",
+        "flash_triton"
+      ],
+      "warmup_ms": 25,
+      "rep_ms": 100,
+      "timeout_seconds": 0,
+      "seed": 0,
+      "minimum_samples": 5,
+      "baseline_directory": "benchmark_results/h200_memory_tiles",
+      "output_directory": "benchmark_results/h200_batch_sweep"
+    },
+    "tiles": {
+      "flash_pytorch_n128_d64_bfloat16.json": {
+        "selected": [
+          128,
+          128
+        ],
+        "sequence_length": 128,
+        "trials": [
+          {
+            "tile": [
+              128,
+              128
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.017716169357299805,
+                0.04736328125,
+                0.044486820697784424,
+                0.021649599075317383
+              ]
+            },
+            "ms": 0.899616003036499,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_triton_n128_d64_bfloat16.json": {
+        "selected": [
+          64,
+          64
+        ],
+        "sequence_length": 128,
+        "trials": [
+          {
+            "tile": [
+              16,
+              16
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.28174400329589844,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              32,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.25884801149368286,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.3162879943847656,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              64
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.22176000475883484,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_pytorch_n128_d64_float32.json": {
+        "selected": [
+          128,
+          128
+        ],
+        "sequence_length": 128,
+        "trials": [
+          {
+            "tile": [
+              128,
+              128
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                2.980232238769531e-07,
+                7.216681865429564e-07,
+                8.940696716308594e-07,
+                7.152557373046875e-07
+              ]
+            },
+            "ms": 0.8968479931354523,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_triton_n128_d64_float32.json": {
+        "selected": [
+          32,
+          32
+        ],
+        "sequence_length": 128,
+        "trials": [
+          {
+            "tile": [
+              16,
+              16
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.172325134277344e-07,
+                1.4433363730859128e-06,
+                1.0728836059570312e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 0.18801599740982056,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              32,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1324882507324219e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 0.1793919950723648,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1920928955078125e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 0.18438400328159332,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              64
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1920928955078125e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 1.2273279428482056,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_pytorch_n2048_d64_bfloat16.json": {
+        "selected": [
+          1024,
+          1024
+        ],
+        "sequence_length": 2048,
+        "trials": [
+          {
+            "tile": [
+              256,
+              256
+            ],
+            "validation": {
+              "sequence_length": 512,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.017716169357299805,
+                0.04736328125,
+                0.03909897804260254,
+                0.02834773063659668
+              ]
+            },
+            "ms": 36.89369583129883,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              512,
+              512
+            ],
+            "validation": {
+              "sequence_length": 1024,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.017716169357299805,
+                0.04736328125,
+                0.04325622320175171,
+                0.02367842197418213
+              ]
+            },
+            "ms": 9.064000129699707,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              1024,
+              1024
+            ],
+            "validation": {
+              "sequence_length": 2048,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.017716169357299805,
+                0.04736328125,
+                0.04263561964035034,
+                0.02083003520965576
+              ]
+            },
+            "ms": 2.4467520713806152,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_triton_n2048_d64_bfloat16.json": {
+        "selected": [
+          32,
+          32
+        ],
+        "sequence_length": 2048,
+        "trials": [
+          {
+            "tile": [
+              16,
+              16
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.2056639939546585,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              32,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.177279993891716,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.19049600511789322,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              64
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.05,
+              "rtol": 0.05,
+              "max_abs_errors": [
+                0.007484912872314453,
+                0.005755305290222168,
+                0.00534975528717041,
+                0.008948087692260742
+              ]
+            },
+            "ms": 0.1897599995136261,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_pytorch_n2048_d64_float32.json": {
+        "selected": [
+          1024,
+          1024
+        ],
+        "sequence_length": 2048,
+        "trials": [
+          {
+            "tile": [
+              256,
+              256
+            ],
+            "validation": {
+              "sequence_length": 512,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.0728836059570312e-06,
+                8.344650268554688e-07
+              ]
+            },
+            "ms": 40.21219253540039,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              512,
+              512
+            ],
+            "validation": {
+              "sequence_length": 1024,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1622905731201172e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 9.172736167907715,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              1024,
+              1024
+            ],
+            "validation": {
+              "sequence_length": 2048,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1324882507324219e-06,
+                1.6689300537109375e-06
+              ]
+            },
+            "ms": 2.5044479370117188,
+            "status": "ok"
+          }
+        ]
+      },
+      "flash_triton_n2048_d64_float32.json": {
+        "selected": [
+          16,
+          16
+        ],
+        "sequence_length": 2048,
+        "trials": [
+          {
+            "tile": [
+              16,
+              16
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.172325134277344e-07,
+                1.4433363730859128e-06,
+                1.0728836059570312e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 0.9198080003261566,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              32,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1324882507324219e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 1.1215199828147888,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              32
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1920928955078125e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 1.9319679737091064,
+            "status": "ok"
+          },
+          {
+            "tile": [
+              64,
+              64
+            ],
+            "validation": {
+              "sequence_length": 128,
+              "atol": 0.001,
+              "rtol": 0.001,
+              "max_abs_errors": [
+                4.76837158203125e-07,
+                1.4433363730859128e-06,
+                1.1920928955078125e-06,
+                9.5367431640625e-07
+              ]
+            },
+            "ms": 19.47907257080078,
+            "status": "ok"
+          }
+        ]
+      }
+    },
+    "source_sha256": {
+      "benchmark_batch_sizes.py": "77a3edf27439b94fb8a039b16ebb96deccbbc1df9157b8dfa612009df2ce3fda",
+      "benchmark_attention.py": "ed708b87ba9a053e6cb03c52a49a16e73915b5b25b87be9a94dceec1bb18146c",
+      "plot_batch_sizes.py": "706bed14b549600f0efe7883a9283475b94a6d589cbcbef5b7239c8fd984d842",
+      "flashattention.py": "5e2608d0f7eea093150e4e8748d4f74d53fdd109f752cab1e5df50016c7d1117",
+      "uv.lock": "fcd1e093270cea223e8c8048af5416c73afd3e9e176b7d4d4b46950e689bda86",
+      "benchmark.env": "7c239b617259d0fcf1aed1b26eaa17ed39adb434705f1839c9fb2e4014b46756"
+    },
+    "baseline_measurements": "rerun"
+  },
+  "gpu_info": "Wed Sep 23 11:42:38 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 570.211.01             Driver Version: 570.211.01     CUDA Version: 12.8     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA H200                    On  |   00000000:CB:00.0 Off |                    0 |\n| N/A   39C    P0             83W /  700W |       0MiB / 143771MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+  "git_revision": "71e1b9f50e5fd974951b8d80be4880374d93a5db",
+  "total_cases": 90,
+  "pid": 5484,
+  "started_at": 1790163758.8170242,
+  "command": [
+    "scripts/benchmark_batch_sizes.py"
+  ]
+}

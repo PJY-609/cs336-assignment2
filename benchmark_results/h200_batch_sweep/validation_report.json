@@ -1,0 +1,24 @@
+{
+  "cases": 90,
+  "successful": 90,
+  "preflight_cases": 10,
+  "plot_files": 12,
+  "csv_matches_raw_records": true,
+  "throughput_verified": true,
+  "source_snapshot_hashes_verified": true,
+  "low_sample_stages": 58,
+  "low_sample_cases": 21,
+  "archives": [
+    {
+      "path": "benchmark_results/archives/batch_sweep_diagnostics.tar.gz",
+      "members": 213,
+      "source_bytes_verified": true
+    },
+    {
+      "path": "benchmark_results/archives/batch_sweep_validation_runs.tar.gz",
+      "members": 137,
+      "source_bytes_verified": true
+    }
+  ],
+  "cpu_orchestration_tests_passed": 4
+}
