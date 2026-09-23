@@ -1,0 +1,10 @@
+{
+  "status": "stopped_by_user",
+  "pid": 8802,
+  "current_case": "flash_pytorch_compiled_n65536_d16_bfloat16",
+  "completed": 290,
+  "total": 440,
+  "elapsed_seconds": 8796.045644283295,
+  "stopped_at": 1790182341.0058753,
+  "interrupted_case": "flash_pytorch_compiled_n65536_d16_bfloat16"
+}

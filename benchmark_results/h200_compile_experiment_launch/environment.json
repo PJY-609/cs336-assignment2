@@ -1,0 +1,21 @@
+{
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "executable": "/usr/local/bin/python",
+  "torch": "2.8.0+cu128",
+  "triton": "3.4.0",
+  "cuda": "12.8",
+  "numpy": "2.2.6",
+  "matplotlib": "3.11.2",
+  "pytest": "9.1.1",
+  "extra_dependency_path": "/tmp/cs336-compile-check-deps",
+  "git_revision": "19cd502c65158f73d4ca78254448e05659df74bc",
+  "environment_overrides": {
+    "PYTHONPATH": "/tmp/cs336-compile-check-deps:/root/cs336-assignment2",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "timeout_seconds": 600
+}

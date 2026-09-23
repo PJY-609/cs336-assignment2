@@ -1,0 +1,15 @@
+{
+  "status": "stopped_by_user",
+  "pid": 8801,
+  "started_at": 1790173544.960231,
+  "completed_stages": [],
+  "stage": "main_and_tiles",
+  "output": "/root/cs336-assignment2/benchmark_results/h200_compile_comparison",
+  "runner_pid": 8802,
+  "stopped_at": 1790182341.0058753,
+  "interrupted_case": "flash_pytorch_compiled_n65536_d16_bfloat16",
+  "terminated_process_groups": [
+    8801,
+    605250
+  ]
+}

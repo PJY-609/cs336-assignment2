@@ -1,0 +1,142 @@
+{
+  "implementation": "flash_triton",
+  "sequence_length": 128,
+  "embedding_dim": 16,
+  "dtype": "float32",
+  "batch_size": 1,
+  "experiment": "main",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.8.0+cu128",
+    "triton": "3.4.0",
+    "cuda": "12.8",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "status": "ok",
+  "wall_seconds": 11.080545727163553,
+  "stage": "complete",
+  "tuning": {
+    "selected": [
+      32,
+      32
+    ],
+    "sequence_length": 128,
+    "trials": [
+      {
+        "tile": [
+          16,
+          16
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            4.172325134277344e-07,
+            4.76837158203125e-07,
+            7.152557373046875e-07,
+            9.5367431640625e-07
+          ]
+        },
+        "ms": 0.2903839945793152,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          32,
+          32
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            4.172325134277344e-07,
+            4.76837158203125e-07,
+            8.344650268554688e-07,
+            1.0728836059570312e-06
+          ]
+        },
+        "ms": 0.2834400087594986,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          64,
+          32
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            4.172325134277344e-07,
+            4.76837158203125e-07,
+            7.152557373046875e-07,
+            1.1920928955078125e-06
+          ]
+        },
+        "ms": 0.2921600043773651,
+        "status": "ok"
+      },
+      {
+        "tile": [
+          64,
+          64
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.001,
+          "rtol": 0.001,
+          "max_abs_errors": [
+            4.172325134277344e-07,
+            4.76837158203125e-07,
+            7.152557373046875e-07,
+            9.5367431640625e-07
+          ]
+        },
+        "ms": 0.2911199927330017,
+        "status": "ok"
+      }
+    ]
+  },
+  "q_tile": 32,
+  "k_tile": 32,
+  "validation_seconds": 0.00252217473462224,
+  "validation": {
+    "batch_size": 1,
+    "sequence_length": 128,
+    "atol": 0.001,
+    "rtol": 0.001,
+    "max_abs_errors": [
+      4.172325134277344e-07,
+      4.76837158203125e-07,
+      8.344650268554688e-07,
+      1.0728836059570312e-06
+    ]
+  },
+  "forward_first_call_seconds": 0.0001670653000473976,
+  "forward_baseline_bytes": 67141632,
+  "forward_peak_bytes": 67150336,
+  "forward_peak_gb": 0.067150336,
+  "forward_incremental_gb": 8.704e-06,
+  "forward_samples": 1234,
+  "forward_ms": 0.010304000228643417,
+  "backward_first_call_seconds": 0.0018189181573688984,
+  "backward_samples": 427,
+  "backward_ms": 0.14127999544143677,
+  "forward_backward_first_call_seconds": 0.0004890603013336658,
+  "forward_backward_baseline_bytes": 67141632,
+  "forward_backward_peak_bytes": 67175424,
+  "forward_backward_peak_gb": 0.067175424,
+  "forward_backward_incremental_gb": 3.3792e-05,
+  "forward_backward_samples": 266,
+  "forward_backward_ms": 0.28305599093437195,
+  "tokens_per_second": 452207.3515471979
+}

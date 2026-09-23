@@ -1,0 +1,17 @@
+{
+  "batch_size": 2,
+  "sequence_length": 2048,
+  "embedding_dim": 64,
+  "dtype": "float32",
+  "implementation": "flash_pytorch",
+  "fixed_tile": [
+    1024,
+    1024
+  ],
+  "experiment": "batch_sweep",
+  "seed": 0,
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "validation_only": true,
+  "result_path": "/root/cs336-assignment2/benchmark_results/h200_batch_compile_smoke/smoke/cases/flash_pytorch_b2_n2048_d64_float32_bm1024_bn1024.json"
+}

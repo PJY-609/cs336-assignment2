@@ -1,0 +1,91 @@
+{
+  "implementation": "flash_pytorch_compiled",
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "bfloat16",
+  "batch_size": 1,
+  "experiment": "main",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.8.0+cu128",
+    "triton": "3.4.0",
+    "cuda": "12.8",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "compile_config": {
+    "backend": "inductor",
+    "fullgraph": true,
+    "dynamic": false,
+    "mode": "default",
+    "forward": true,
+    "backward": true
+  },
+  "tile_policy": "fixed tile or eager PyTorch-selected tile; no compiled retuning",
+  "status": "ok",
+  "wall_seconds": 5.923330039251596,
+  "stage": "complete",
+  "tuning": {
+    "selected": [
+      128,
+      128
+    ],
+    "sequence_length": 128,
+    "trials": [
+      {
+        "tile": [
+          128,
+          128
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.05,
+          "rtol": 0.05,
+          "max_abs_errors": [
+            0.017716169357299805,
+            0.04736328125,
+            0.044486820697784424,
+            0.021649599075317383
+          ]
+        },
+        "ms": 0.7924799919128418,
+        "status": "ok"
+      }
+    ]
+  },
+  "q_tile": 128,
+  "k_tile": 128,
+  "validation_seconds": 0.9195791678503156,
+  "validation": {
+    "batch_size": 1,
+    "sequence_length": 128,
+    "atol": 0.05,
+    "rtol": 0.05,
+    "max_abs_errors": [
+      0.017716169357299805,
+      0.01584029197692871,
+      0.01663970947265625,
+      0.021649599075317383
+    ]
+  },
+  "forward_first_call_seconds": 0.0004284568130970001,
+  "forward_baseline_bytes": 67174400,
+  "forward_peak_bytes": 67225088,
+  "forward_peak_gb": 0.067225088,
+  "forward_incremental_gb": 5.0688e-05,
+  "forward_samples": 527,
+  "forward_ms": 0.07865600287914276,
+  "backward_first_call_seconds": 0.0013475921005010605,
+  "backward_samples": 313,
+  "backward_ms": 0.20003199577331543,
+  "forward_backward_first_call_seconds": 0.0006483467295765877,
+  "forward_backward_baseline_bytes": 67174400,
+  "forward_backward_peak_bytes": 67355648,
+  "forward_backward_peak_gb": 0.067355648,
+  "forward_backward_incremental_gb": 0.000181248,
+  "forward_backward_samples": 201,
+  "forward_backward_ms": 0.3659519851207733,
+  "tokens_per_second": 349772.66200033535
+}

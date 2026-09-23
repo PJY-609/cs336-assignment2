@@ -1,0 +1,17 @@
+{
+  "batch_size": 2,
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "float32",
+  "implementation": "flash_triton",
+  "fixed_tile": [
+    32,
+    32
+  ],
+  "experiment": "batch_sweep",
+  "seed": 0,
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "validation_only": true,
+  "result_path": "/root/cs336-assignment2/benchmark_results/h200_batch_compile_smoke/smoke/cases/flash_triton_b2_n128_d64_float32_bm32_bn32.json"
+}

@@ -1,0 +1,82 @@
+{
+  "implementation": "flash_pytorch",
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "bfloat16",
+  "batch_size": 1,
+  "experiment": "main",
+  "environment": {
+    "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+    "torch": "2.8.0+cu128",
+    "triton": "3.4.0",
+    "cuda": "12.8",
+    "gpu": "NVIDIA H200",
+    "memory_gib": 139.80072021484375,
+    "tf32": false
+  },
+  "status": "ok",
+  "wall_seconds": 5.77263187803328,
+  "stage": "complete",
+  "tuning": {
+    "selected": [
+      128,
+      128
+    ],
+    "sequence_length": 128,
+    "trials": [
+      {
+        "tile": [
+          128,
+          128
+        ],
+        "validation": {
+          "batch_size": 1,
+          "sequence_length": 128,
+          "atol": 0.05,
+          "rtol": 0.05,
+          "max_abs_errors": [
+            0.017716169357299805,
+            0.04736328125,
+            0.044486820697784424,
+            0.021649599075317383
+          ]
+        },
+        "ms": 0.882752001285553,
+        "status": "ok"
+      }
+    ]
+  },
+  "q_tile": 128,
+  "k_tile": 128,
+  "validation_seconds": 0.0027857189998030663,
+  "validation": {
+    "batch_size": 1,
+    "sequence_length": 128,
+    "atol": 0.05,
+    "rtol": 0.05,
+    "max_abs_errors": [
+      0.017716169357299805,
+      0.04736328125,
+      0.044486820697784424,
+      0.021649599075317383
+    ]
+  },
+  "forward_first_call_seconds": 0.0005714558064937592,
+  "forward_baseline_bytes": 67174400,
+  "forward_peak_bytes": 67342848,
+  "forward_peak_gb": 0.067342848,
+  "forward_incremental_gb": 0.000168448,
+  "forward_samples": 262,
+  "forward_ms": 0.2707360088825226,
+  "backward_first_call_seconds": 0.002146762330085039,
+  "backward_samples": 162,
+  "backward_ms": 0.47836799919605255,
+  "forward_backward_first_call_seconds": 0.0014021936804056168,
+  "forward_backward_baseline_bytes": 67174400,
+  "forward_backward_peak_bytes": 67521536,
+  "forward_backward_peak_gb": 0.067521536,
+  "forward_backward_incremental_gb": 0.000347136,
+  "forward_backward_samples": 103,
+  "forward_backward_ms": 0.8708480000495911,
+  "tokens_per_second": 146983.17041861604
+}

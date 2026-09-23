@@ -1,0 +1,1029 @@
+{
+  "completed": 290,
+  "successful": 286,
+  "timeouts": 4,
+  "interrupted": 1,
+  "planned_total": 560,
+  "remaining_including_interrupted": 270,
+  "source_and_snapshot_hashes_verified": true,
+  "low_sample_stages": [
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch_compiled",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 65536,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 65536,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 65536,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 32,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 64,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_pytorch",
+      "sequence_length": 8192,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 16384,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 3
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward",
+      "samples": 2
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "flash_triton",
+      "sequence_length": 8192,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 2
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 128,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 1
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 16,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 4
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 32,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 3
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "backward",
+      "samples": 4
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 32768,
+      "embedding_dim": 64,
+      "dtype": "float32",
+      "phase": "forward_backward",
+      "samples": 2
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 65536,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "backward",
+      "samples": 2
+    },
+    {
+      "implementation": "naive",
+      "sequence_length": 65536,
+      "embedding_dim": 16,
+      "dtype": "bfloat16",
+      "phase": "forward_backward",
+      "samples": 1
+    }
+  ],
+  "minimum_samples": 5,
+  "smoke_benchmark_cases": 8,
+  "multi_batch_checks": 14,
+  "cpu_tests_passed": 8,
+  "diagnostics_archive": {
+    "path": "benchmark_results/archives/compiled_comparison_partial_diagnostics.tar.gz",
+    "members": 628,
+    "sha256": "991485385fb0e2ffbbc8de0b5c566234469b866ed1dfca047c7dc7149439b099",
+    "bytes": 209153
+  }
+}

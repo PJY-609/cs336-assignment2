@@ -1,0 +1,14 @@
+{
+  "batch_size": 2,
+  "sequence_length": 128,
+  "embedding_dim": 64,
+  "dtype": "float32",
+  "implementation": "naive",
+  "fixed_tile": null,
+  "experiment": "batch_sweep",
+  "seed": 0,
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "validation_only": true,
+  "result_path": "/root/cs336-assignment2/benchmark_results/h200_batch_compile_smoke/smoke/cases/naive_b2_n128_d64_float32.json"
+}

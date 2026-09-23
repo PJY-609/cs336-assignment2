@@ -2,6 +2,11 @@
 
 ## Status and comparison
 
+A subsequent H200 run was stopped by request after 290 terminal cases (286
+successes, four timeouts), with one additional case interrupted. Tile and batch
+sweeps were not started. See [the partial results and resume instructions](benchmark_results/h200_compile_comparison/README.md).
+The implementation-change status below describes the state before that run.
+
 The implementation, runners, tests, and plotting support are ready for an H200
 run. No new GPU measurements are included by this change. The archived three-way
 results remain historical measurements; do not infer results for the new method.

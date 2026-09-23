@@ -1,0 +1,80 @@
+{
+  "config": {
+    "benchmark_version": 3,
+    "sequence_lengths": [
+      128,
+      256,
+      512,
+      1024,
+      2048,
+      4096,
+      8192,
+      16384,
+      32768,
+      65536
+    ],
+    "dimensions": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "dtypes": [
+      "bfloat16",
+      "float32"
+    ],
+    "implementations": [
+      "naive",
+      "flash_pytorch",
+      "flash_pytorch_compiled",
+      "flash_triton"
+    ],
+    "warmup_ms": 25,
+    "rep_ms": 100,
+    "timeout_seconds": 600,
+    "seed": 0,
+    "batch_size": 1,
+    "causal": true,
+    "tile_sensitivity": true,
+    "tile_sequence_lengths": [
+      1024,
+      4096,
+      16384,
+      65536
+    ],
+    "tile_sizes": [
+      32,
+      64,
+      128
+    ],
+    "tile_pytorch_sizes": [
+      256,
+      512,
+      1024
+    ],
+    "tile_implementations": [
+      "flash_pytorch",
+      "flash_pytorch_compiled",
+      "flash_triton"
+    ],
+    "memory_units": "decimal GB, allocated (not reserved)"
+  },
+  "pid": 8802,
+  "started_at": 1790173545.0097432,
+  "git_revision": "19cd502c65158f73d4ca78254448e05659df74bc",
+  "gpu_info": "Wed Sep 23 14:25:45 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA H200                    On  |   00000000:90:00.0 Off |                    0 |\n| N/A   30C    P0             79W /  700W |       0MiB / 143771MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+  "command": [
+    "scripts/benchmark_attention.py",
+    "--tile-sensitivity",
+    "--output",
+    "/root/cs336-assignment2/benchmark_results/h200_compile_comparison"
+  ],
+  "total_cases": 440,
+  "source_sha256": {
+    "benchmark_attention.py": "3ca11026001e835c98d0b624cb80f0a3f8db361ac1300562e9cb79439e1b4e5e",
+    "plot_attention_benchmarks.py": "3b952a1715078de32232189995017498035e5127480345f1e05c35e69b394ba4",
+    "flashattention.py": "81f7c7b5b25ab126984b074e9513f44a23d7a6a57ccaadf407939e28dcc476dd",
+    "uv.lock": "fcd1e093270cea223e8c8048af5416c73afd3e9e176b7d4d4b46950e689bda86",
+    "benchmark.env": "7c239b617259d0fcf1aed1b26eaa17ed39adb434705f1839c9fb2e4014b46756"
+  }
+}

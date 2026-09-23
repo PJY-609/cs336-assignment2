@@ -1,0 +1,34 @@
+{
+  "batch_sizes": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "sequence_lengths": [
+    128,
+    2048,
+    16384
+  ],
+  "dimensions": [
+    64
+  ],
+  "dtypes": [
+    "bfloat16",
+    "float32"
+  ],
+  "implementations": [
+    "naive",
+    "flash_pytorch",
+    "flash_pytorch_compiled",
+    "flash_triton"
+  ],
+  "warmup_ms": 25,
+  "rep_ms": 100,
+  "timeout_seconds": 600,
+  "seed": 0,
+  "minimum_samples": 5,
+  "baseline_directory": "benchmark_results/h200_memory_tiles",
+  "output_directory": "benchmark_results/h200_batch_compile_comparison"
+}
