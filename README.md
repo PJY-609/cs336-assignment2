@@ -57,6 +57,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 `uv run` installs dependencies automatically as dictated in the `pyproject.toml` file.
 
+## Next step: single-node distributed communication benchmark
+
+Benchmark FP32 all-reduce on one rented machine with **6 NVIDIA A100 SXM GPUs**,
+using 2, 4, and 6 processes and tensor sizes from 1 MB to 1 GB. See the
+[experiment plan](DISTRIBUTED_COMMUNICATION_EXPERIMENT.md) for the configuration
+matrix, measurement protocol, and expected deliverables. This experiment is
+planned; GPU measurements have not been collected yet.
+
 ## Submitting
 
 To submit, run `./test_and_make_submission.sh` . This script will install your
