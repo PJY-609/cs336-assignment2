@@ -1,0 +1,41 @@
+{
+  "status": "ok",
+  "backend": "nccl",
+  "device": "cuda",
+  "dtype": "float32",
+  "tensor_bytes": 1000000,
+  "elements": 250000,
+  "world_size": 2,
+  "repeat": 1,
+  "warmup": 5,
+  "iterations": 3,
+  "cuda_visible_devices": "0,1",
+  "metric": "synchronized host-observed call latency",
+  "unit": "ms",
+  "validated": true,
+  "rank_samples_ms": [
+    [
+      0.08438,
+      0.071906,
+      0.072417
+    ],
+    [
+      0.07947,
+      0.072056,
+      0.072447
+    ]
+  ],
+  "iteration_max_ms": [
+    0.08438,
+    0.072056,
+    0.072447
+  ],
+  "median_ms": 0.072447,
+  "q1_ms": 0.0722515,
+  "q3_ms": 0.0784135,
+  "iqr_ms": 0.006162000000000001,
+  "rank_medians_ms": [
+    0.072417,
+    0.072447
+  ]
+}

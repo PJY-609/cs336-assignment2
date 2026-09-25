@@ -1,0 +1,41 @@
+{
+  "status": "ok",
+  "backend": "gloo",
+  "device": "cpu",
+  "dtype": "float32",
+  "tensor_bytes": 40000,
+  "elements": 10000,
+  "world_size": 2,
+  "repeat": 1,
+  "warmup": 5,
+  "iterations": 3,
+  "cuda_visible_devices": "",
+  "metric": "synchronized host-observed call latency",
+  "unit": "ms",
+  "validated": true,
+  "rank_samples_ms": [
+    [
+      0.162527,
+      0.162557,
+      0.176764
+    ],
+    [
+      0.16379,
+      0.171144,
+      0.173007
+    ]
+  ],
+  "iteration_max_ms": [
+    0.16379,
+    0.171144,
+    0.176764
+  ],
+  "median_ms": 0.171144,
+  "q1_ms": 0.16746699999999998,
+  "q3_ms": 0.173954,
+  "iqr_ms": 0.0064870000000000205,
+  "rank_medians_ms": [
+    0.162557,
+    0.171144
+  ]
+}

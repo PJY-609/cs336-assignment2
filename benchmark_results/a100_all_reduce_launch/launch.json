@@ -1,0 +1,12 @@
+{
+  "pid": 4861,
+  "started_utc": "2026-09-25T03:21:54.796603+00:00",
+  "command": [
+    "/root/cs336-assignment2/.venv/bin/python",
+    "-u",
+    "/root/cs336-assignment2/scripts/benchmark_all_reduce.py",
+    "--gpu-ids",
+    "0,1,2,3,4,5"
+  ],
+  "log": "/root/cs336-assignment2/benchmark_results/a100_all_reduce_launch/run.log"
+}

@@ -1,6 +1,7 @@
 # Next experiment: single-node all-reduce on six A100 SXM GPUs
 
-Status: planned; implement and debug the benchmark locally before renting GPUs.
+Status: completed on 2026-09-25 UTC; all 36 launches passed. See the
+[results and hardware report](benchmark_results/a100_sxm_all_reduce/README.md).
 This plan follows the requested `distributed_communication_single_node` problem.
 
 ## Objective and hardware
@@ -77,9 +78,61 @@ are hypotheses to evaluate, not measured conclusions.
 
 ## Execution checklist
 
-- [ ] Implement the script and check correctness locally with Gloo/CPU.
+- [x] Implement the script and check correctness locally with Gloo/CPU.
 - [ ] Confirm six A100 SXM GPUs share a host and verify NVSwitch connectivity.
-- [ ] Capture environment metadata and run a short NCCL smoke test.
-- [ ] Run all 12 configurations and repeats on the same allocation.
-- [ ] Export the table, plot, raw data, and results commentary.
+- [x] Capture environment metadata and run a short NCCL smoke test.
+- [x] Run all 12 configurations and repeats on the same allocation.
+- [x] Export the table, plot, raw data, and results commentary.
 - [ ] Download results and terminate the rental promptly.
+
+## Prepared runner and environment
+
+Run from the repository root. Install the exact `uv.lock` environment with:
+
+```sh
+bash scripts/setup_all_reduce.sh
+```
+
+The setup script uses copy mode and `/tmp/cs336-uv-cache` by default because the
+standard cache failed with `Not supported (os error 95)` on this host. Override
+`UV_CACHE_DIR` if needed. The benchmark uses the resulting `.venv` directly.
+
+CPU correctness check (small tensors, not experiment measurements):
+
+```sh
+.venv/bin/python scripts/benchmark_all_reduce.py \
+  --backend gloo --device cpu --world-sizes 2 --sizes 4096 40000 \
+  --iterations 3 --repeats 1 \
+  --output benchmark_results/a100_all_reduce_setup/cpu_smoke
+```
+
+Short GPU check on every planned process count:
+
+```sh
+.venv/bin/python scripts/benchmark_all_reduce.py \
+  --gpu-ids 0,1,2,3,4,5 --world-sizes 2 4 6 --sizes 1000000 \
+  --iterations 3 --repeats 1 \
+  --output benchmark_results/a100_all_reduce_setup/nccl_smoke
+```
+
+Full experiment (36 launches: 12 configurations, three repeats):
+
+```sh
+.venv/bin/python scripts/benchmark_all_reduce.py \
+  --gpu-ids 0,1,2,3,4,5 \
+  --output benchmark_results/a100_sxm_all_reduce
+```
+
+Defaults are NCCL/CUDA, 5 warmups, 50 measured iterations, and a 290-second
+wall-clock timeout per launch. Each configuration starts a fresh process group.
+The runner fails immediately on an error, records launch status and logs, and
+terminates timed-out process trees. Select a **new output directory** for each
+invocation; existing directories are rejected to preserve results.
+
+Each output directory contains environment/topology metadata, the exact runner
+and lockfile, per-launch commands and GPU selections, logs, raw timing JSON,
+and `summary.csv`. JSON includes every rank's samples and median, per-iteration
+rank maxima, median and IQR in milliseconds. SUM correctness is checked before
+warmup and after measurement. Inputs are reset before every collective.
+Document any known competing workload separately; `nvidia-smi` captures a
+snapshot at startup. The completed report, table, and plot are in `benchmark_results/a100_sxm_all_reduce/`.

@@ -1,0 +1,97 @@
+{
+  "created_utc": "2026-09-25T03:19:38.402791+00:00",
+  "hostname": "3a00ec254da0",
+  "platform": "Linux-6.17.0-14-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]",
+  "executable": "/root/cs336-assignment2/.venv/bin/python",
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0",
+  "nccl": [
+    2,
+    28,
+    9
+  ],
+  "settings": {
+    "backend": "nccl",
+    "device": "cuda",
+    "world_sizes": [
+      2,
+      4,
+      6
+    ],
+    "sizes": [
+      1000000
+    ],
+    "gpu_ids": "0,1,2,3,4,5",
+    "warmup": 5,
+    "iterations": 3,
+    "repeats": 1,
+    "timeout_seconds": 290,
+    "output": "benchmark_results/a100_all_reduce_setup/nccl_smoke",
+    "worker": false,
+    "tensor_bytes": 4096,
+    "repeat": 1
+  },
+  "environment": {
+    "NCCL_VERSION": "2.25.1-1"
+  },
+  "gpus": [
+    {
+      "logical_id": 0,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    },
+    {
+      "logical_id": 1,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    },
+    {
+      "logical_id": 2,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    },
+    {
+      "logical_id": 3,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    },
+    {
+      "logical_id": 4,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    },
+    {
+      "logical_id": 5,
+      "name": "NVIDIA A100-SXM4-80GB",
+      "memory_bytes": 85093777408
+    }
+  ],
+  "git_commit": {
+    "returncode": 0,
+    "stdout": "81bb42759bb2dd9cc7782f943759204d05e0a9ca\n",
+    "stderr": ""
+  },
+  "git_status": {
+    "returncode": 0,
+    "stdout": "?? benchmark_results/a100_all_reduce_setup/\n?? scripts/benchmark_all_reduce.py\n?? tests/test_all_reduce_benchmark.py\n",
+    "stderr": ""
+  },
+  "script_sha256": "5c9f23ab9a3ac733bd26c130410caf97e1edb5d4056cd5769f3c9ca68cf3c488",
+  "lock_sha256": "fcd1e093270cea223e8c8048af5416c73afd3e9e176b7d4d4b46950e689bda86",
+  "nvidia_smi": {
+    "returncode": 0,
+    "stdout": "Fri Sep 25 03:19:38 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.126.16             Driver Version: 580.126.16     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:47:00.0 Off |                    0 |\n| N/A   27C    P0             57W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA A100-SXM4-80GB          On  |   00000000:4E:00.0 Off |                    0 |\n| N/A   28C    P0             58W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA A100-SXM4-80GB          On  |   00000000:87:00.0 Off |                    0 |\n| N/A   34C    P0             63W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA A100-SXM4-80GB          On  |   00000000:90:00.0 Off |                    0 |\n| N/A   31C    P0             63W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   4  NVIDIA A100-SXM4-80GB          On  |   00000000:B7:00.0 Off |                    0 |\n| N/A   29C    P0             64W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n|   5  NVIDIA A100-SXM4-80GB          On  |   00000000:BD:00.0 Off |                    0 |\n| N/A   30C    P0             64W /  400W |       4MiB /  81920MiB |      0%      Default |\n|                                         |                        |             Disabled |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n",
+    "stderr": ""
+  },
+  "topology": {
+    "returncode": 0,
+    "stdout": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tNIC0\tNIC1\tNIC2\tNIC3\tNIC4\tNIC5\tNIC6\tNIC7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNV12\tNV12\tNV12\tNV12\tNV12\tNODE\tNODE\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\t0-63\t0\t\tN/A\nGPU1\tNV12\t X \tNV12\tNV12\tNV12\tNV12\tNODE\tNODE\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\t0-63\t0\t\tN/A\nGPU2\tNV12\tNV12\t X \tNV12\tNV12\tNV12\tSYS\tSYS\tSYS\tSYS\tPXB\tPXB\tNODE\tNODE\t64-127\t1\t\tN/A\nGPU3\tNV12\tNV12\tNV12\t X \tNV12\tNV12\tSYS\tSYS\tSYS\tSYS\tPXB\tPXB\tNODE\tNODE\t64-127\t1\t\tN/A\nGPU4\tNV12\tNV12\tNV12\tNV12\t X \tNV12\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tPXB\tPXB\t64-127\t1\t\tN/A\nGPU5\tNV12\tNV12\tNV12\tNV12\tNV12\t X \tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tPXB\tPXB\t64-127\t1\t\tN/A\nNIC0\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t X \tPXB\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t\t\t\t\nNIC1\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\tPXB\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t\t\t\t\nNIC2\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tPXB\tSYS\tSYS\tSYS\tSYS\t\t\t\t\nNIC3\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tPXB\t X \tSYS\tSYS\tSYS\tSYS\t\t\t\t\nNIC4\tSYS\tSYS\tPXB\tPXB\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t X \tPXB\tNODE\tNODE\t\t\t\t\nNIC5\tSYS\tSYS\tPXB\tPXB\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\tPXB\t X \tNODE\tNODE\t\t\t\t\nNIC6\tSYS\tSYS\tNODE\tNODE\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tPXB\t\t\t\t\nNIC7\tSYS\tSYS\tNODE\tNODE\tPXB\tPXB\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tPXB\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: mlx5_0\n  NIC1: mlx5_1\n  NIC2: mlx5_2\n  NIC3: mlx5_3\n  NIC4: mlx5_4\n  NIC5: mlx5_5\n  NIC6: mlx5_6\n  NIC7: mlx5_7\n\n",
+    "stderr": ""
+  },
+  "gpu_inventory": {
+    "returncode": 0,
+    "stdout": "index, uuid, name, memory.total [MiB], driver_version, pci.bus_id\n0, GPU-8231ea5c-cdeb-467f-7ca6-b84f3a9bd073, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:47:00.0\n1, GPU-e235da14-6286-464d-ac5f-970d5bb7ddd8, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:4E:00.0\n2, GPU-047e8928-0abc-168a-3519-6be701e66958, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:87:00.0\n3, GPU-06d5cdd8-e928-db87-4027-35c82c98d77a, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:90:00.0\n4, GPU-9221e55e-1b23-0e83-46d7-191609180553, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:B7:00.0\n5, GPU-e1dc12d7-585b-2015-78df-6d4ac6053606, NVIDIA A100-SXM4-80GB, 81920 MiB, 580.126.16, 00000000:BD:00.0\n",
+    "stderr": ""
+  }
+}
